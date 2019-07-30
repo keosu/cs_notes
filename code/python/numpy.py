@@ -75,6 +75,26 @@ b = a[indices]
 print(a)  # >>>[ 0 10 20 30 40 50 60 70 80 90]
 print(b)  # >>>[10 50 90]
 
+# contatenate
+a = np.arange(3).reshape(3, 1)
+# array([[0],
+#        [1],
+#        [2]])
+np.contatenate([a, a], axis=0)
+np.vstack([a, a])
+np.r_[a, a]
+# array([[0],
+#        [1],
+#        [2],
+#        [0],
+#        [1],
+#        [2]])
+np.contatenate([a, a], axis=1)
+np.hstack([a, a])
+np.c_[a, a]
+# array([[0, 0],
+#        [1, 1],
+#        [2, 2]])
 
 # Boolean masking
 
