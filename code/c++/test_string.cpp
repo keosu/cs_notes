@@ -1,3 +1,4 @@
+#include <boost/algorithm/string.hpp>
 #include <fstream>
 #include <functional>
 #include <iostream>
@@ -13,6 +14,19 @@ using namespace cv;
 #include <iostream>
 
 vector<tuple<string, Mat&, float>> vec;
+
+// split using boost
+vector<string> split(string str) {
+  vector<string> vec;
+
+  auto func = [](char c) {
+    string dim = " -()[]#,";
+    return (dim.find(c) != -1);
+  };
+  boost::split(vec, str, func, boost::token_compress_on);
+
+  return vec;
+}
 
 int main(int argc, char** argv) {
   string path = "x.txt";
