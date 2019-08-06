@@ -4714,6 +4714,13 @@ private void backtracking(int row) {
     }
 }
 ```
+一行python代码实现
+```Python
+class Solution:
+    def solveNQueens(self, n: int) -> List[List[str]]:
+        return [['.' * i + 'Q' + '.' * (n-i-1) for i in vec] for vec in itertools.permutations(range(n)) if n == len(set(vec[i]+i for i in range(n))) == len(set(vec[i]-i for i in range(n)))]
+
+```
 
 ## 动态规划
 
