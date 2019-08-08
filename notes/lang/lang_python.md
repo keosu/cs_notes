@@ -265,3 +265,9 @@ class D(C,B): #multiple derived
   pass
 
 ```
+
+## 官方文档
+
+- 语言参考： https://docs.python.org/zh-cn/3.7/reference/index.html
+- 标准库 https://docs.python.org/zh-cn/3.7/library/index.html
+- 内置函数 https://docs.python.org/zh-cn/3.7/library/functions.html
