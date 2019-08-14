@@ -8,7 +8,7 @@ g++ -g hello.cpp -o hello
 如果没有-g，你将看不见程序的函数名、变量名，所代替的全是运行时的内存地址。
 
 ## 启动GDB
-1、gdb program    program 也就是你的执行文件 
+1、gdb program  
 2、gdb program core  用gdb同时调试一个运行程序和core文件，core是程序非法执行后core dump后产生的文件。  
 3、gdb PID process-id   指定这个服务程序运行时的进程ID，gdb会自动attach    
 
@@ -16,7 +16,7 @@ g++ -g hello.cpp -o hello
 
 -   file [filename]       装入想要调试的可执行文件  
 -   kill [filename]       终止正在调试的程序  
--   break [file:]function       在(file文件的)function函数中设置一个断点  
+-   b [file:]function       在(file文件的)function函数中设置一个断点  
 -   clear       删除一个断点，这个命令需要指定代码行或者函数名作为参数  
 -   run [arglist]       运行您的程序 (如果指定了arglist,则将arglist作为参数运行程序)  
 -   bt Backtrace: 显示程序堆栈信息  
