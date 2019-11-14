@@ -1,0 +1,19 @@
+{
+  "tasks": [
+    {
+      "type": "shell",
+      "label": "g++ build file",
+      "command": "/opt/rh/devtoolset-7/root/usr/bin/g++",
+      "args": [
+        "-g",
+        "${file}",
+        "-o",
+        "${workspaceFolder}/a.out"
+      ],
+      "options": {
+        "cwd": "/opt/rh/devtoolset-7/root/usr/bin"
+      }
+    }
+  ],
+  "version": "2.0.0"
+}
