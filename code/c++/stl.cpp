@@ -11,6 +11,7 @@
 #include <string>  //string
 #include <valarray>
 #include <vector>  //vector
+#include <random>
 
 using namespace std;
 using namespace chrono;
@@ -295,7 +296,7 @@ void test_chrono() {  // 10.4 时间模板
       print_timepoint(elapsed, 2);
     }
   }
-}   
+}
 
 void test_valarray() {  // 10.3 valarray
   {
@@ -458,8 +459,36 @@ void test_valarray() {  // 10.3 valarray
       print(data, 5, 3);
     }
   }  // end of 10.3.5
+}
 
-}   
+void test_basic() {
+  int s1[10], s2[10];
+
+  fill(s1, end(s1), 1);
+  copy(s1, end(s1), s2);
+  iota(s1, end(s1), 1);
+
+  reverse(begin(s1), end(s1));
+  replace(begin(s1), end(s1), 3, 100);
+
+  rotate(begin(s1), s1 + 3, end(s1));
+
+  random_shuffle(begin(s1), end(s1));
+
+  std::mt19937 g(std::random_device{}());
+  shuffle(begin(s1), end(s1), g);
+
+  sort(begin(s1), end(s1));
+
+  copy(s1, end(s1), s2);
+  copy(s2, end(s2), ostream_iterator<int>(cout, " , "));
+  cout << endl;
+
+  cout << "input intergers ,press ctrl+z to end with" << endl;
+  vector<int> ivec;
+  copy(istream_iterator<int>(cin), istream_iterator<int>(), back_inserter(ivec));
+  copy(ivec.begin(), ivec.end(), ostream_iterator<int>(cout, " , "));
+}
 
 int main(void) {
   {
@@ -578,7 +607,6 @@ int main(void) {
     cout << endl;
   }
   {
-    
     // 10.2.6 max, min
     // max_element, 返回迭代器
     vector<int> data{2, 12, 3, 5, 17, -11, 113, 117, 19};
@@ -589,11 +617,11 @@ int main(void) {
     cout << "\n Min = " << *min << "Max = " << *max << endl;
 
     auto pr = minmax_element(begin(data), end(data));
-    cout << "\n Min = " << *pr.first << "Max = " << *pr.second << endl; 
-    
+    cout << "\n Min = " << *pr.first << "Max = " << *pr.second << endl;
+
     auto words = {string{"one"}, string{"two"},   string{"three"}, string{"four"}, string{"five"},
                   string{"six"}, string{"seven"}, string{"eight"}};  // initializer_list
-                  
+
     auto prx =
         minmax(words, [](const string& s1, const string& s2) { return s1.back() < s2.back(); });
     cout << "\n Min = " << prx.first << "Max = " << prx.second << endl;
