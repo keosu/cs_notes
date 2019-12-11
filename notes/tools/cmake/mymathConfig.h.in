@@ -1,0 +1,4 @@
+// 与Tutorial 相关的配置好的选项与设置
+#define Tutorial_VERSION_MAJOR 123
+#define Tutorial_VERSION_MINOR 456
+#cmakedefine USE_MYMATH
