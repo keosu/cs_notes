@@ -2,5 +2,9 @@
   "files.associations": {
     "iostream": "cpp",
     "ostream": "cpp"
+  },
+  "C_Cpp.default.configurationProvider": "go2sh.cmake-integration",
+  "code-runner.executorMap": {
+    "cpp": "cd $dir && g++ $fileName  -o $fileNameWithoutExt -lglog && ./$fileNameWithoutExt"
   }
 }
