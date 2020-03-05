@@ -7,6 +7,21 @@ int main(int argc, char **argv) {
   FLAGS_stderrthreshold = 3;  //设置记录到stderr的log的级别
   FLAGS_minloglevel = 0;      //设置需要记录log的级别
 
+  // 常用的flag有：(可以通过环境变量设置 GLOG_xxxx)
+
+  // logtostderr （ bool ，默认为 false ）
+  // 日志输出到stderr，不输出到日志文件。
+  // colorlogtostderr （ bool ，默认为 false ）
+  // 输出彩色日志到stderr。
+  // stderrthreshold （ int ，默认为2，即 ERROR ）
+  // 将大于等于该级别的日志同时输出到stderr。日志级别 INFO, WARNING, ERROR, FATAL
+  // 的值分别为0、1、2、3。 minloglevel （ int ，默认为0，即 INFO ）
+  // 打印大于等于该级别的日志。日志级别的值同上。
+  // log_dir （ string ，默认为 "" ）
+  // 指定输出日志文件的目录。
+  // v （ int ，默认为0）
+  // 显示所有 VLOG(m) 的日志， m 小于等于该flag的值。会被 --vmodule 覆盖。
+
   LOG(INFO) << "There is INFO !!!";
   LOG(WARNING) << "There is WARNING !!!";
   LOG(ERROR) << "There is error !!!";
