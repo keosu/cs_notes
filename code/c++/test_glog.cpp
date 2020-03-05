@@ -1,4 +1,6 @@
 #include <glog/logging.h>
+#include <thread>
+
 int main(int argc, char **argv) {
   google::InitGoogleLogging(argv[0]);  // 初始化GLog库
   FLAGS_log_dir = "/tmp";              // 将日志文件输出到本地
@@ -53,5 +55,19 @@ int main(int argc, char **argv) {
   // 崩溃处理
   // 当程序出现崩溃时，GLog也可以提供Bug定位支持。
   // 通过google::InstallFailureSignalHandler()安装信号处理程序，当程序出现崩溃时，会输出崩溃的位置等相关信息。
+
+  // 多线程测试，条件计数器线程间共享
+  std::thread th[4];
+  for (auto x = 0; x < 4; x++) {
+    th[x] = std::thread([=]() {
+      LOG(INFO) << "Thread:" << x << std::endl;
+      // 限制输出次数
+      for (int i = 0; i < 10; i++) {
+        LOG_FIRST_N(INFO, 2) << "i: " << i;  // 输出前4次Log
+      }
+    });
+  }
+  for (auto i = 0; i < 4; i++) th[i].join();
+
   return 0;
 }
