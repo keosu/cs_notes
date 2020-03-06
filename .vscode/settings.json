@@ -1,10 +1,12 @@
 {
   "files.associations": {
     "iostream": "cpp",
-    "ostream": "cpp"
+    "ostream": "cpp",
+    "thread": "cpp",
+    "numeric": "cpp"
   },
   "C_Cpp.default.configurationProvider": "go2sh.cmake-integration",
   "code-runner.executorMap": {
-    "cpp": "cd $dir && g++ $fileName  -o $fileNameWithoutExt -lglog && ./$fileNameWithoutExt"
+    "cpp": "cd $dir && g++ $fileName  -o $fileNameWithoutExt -lglog -lpthread && ./$fileNameWithoutExt"
   }
 }
