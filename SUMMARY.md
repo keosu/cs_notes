@@ -13,5 +13,5 @@
     * [javascript](notes/lang/lang_js.md)
     * [shell](notes/lang/lang_shell.md)
 * Algorithm
-    * [常用算法](algorithm/algorithm-by-examples.md)
+    * [常用算法](notes/algorithm/algorithm-by-examples.md)
 
