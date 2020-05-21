@@ -1,14 +1,12 @@
 # conda quick reference
 
-conda 是一个命令行的包管理和环境管理工具  
-1. 包管理：安装、卸载、升级软件包，类似于pip
-2. 环境管理：解决不同版本库共存以及依赖问题，如分别使用python2和python3，类似与virtualenv
+conda 是一个命令行的包管理和环境管理工具    
+1. 包管理：安装、卸载、升级软件包，类似于pip  
+2. 环境管理：解决不同版本库共存以及依赖问题，如分别使用python2和python3，类似与virtualenv  
 
 **注**   
-
-此处只是一个快速参考，系统的学习，请参考[官方文档](https://conda.io/projects/conda/en/latest/user-guide/getting-started.html)  
-
-这里是官方的[cheetsheet](https://docs.conda.io/projects/conda/en/4.6.0/_downloads/52a95608c49671267e40c689e0bc00ca/conda-cheatsheet.pdf)
+1. 此处只是一个快速参考，系统的学习，请参考[官方文档](https://conda.io/projects/conda/en/latest/user-guide/getting-started.html)  
+2. 这里是官方的[cheetsheet](https://docs.conda.io/projects/conda/en/4.6.0/_downloads/52a95608c49671267e40c689e0bc00ca/conda-cheatsheet.pdf)  
 
 
 ## 基本配置
