@@ -8,6 +8,10 @@
     * [conda](notes/tools/conda.md)
 * Languages
     * [cpp](notes/lang/lang_cpp.md)
+    * [C++基础问题](notes/lang/lang_cpp_q&a.md)
     * [python](notes/lang/lang_python.md)
     * [javascript](notes/lang/lang_js.md)
     * [shell](notes/lang/lang_shell.md)
+* Algorithm
+    * [常用算法](algorithm/algorithm-by-examples.md)
+
