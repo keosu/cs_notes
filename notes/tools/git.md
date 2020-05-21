@@ -39,23 +39,21 @@ git push -u origin master
 
 图中的 objects 标识的区域为 Git 的对象库，实际位于 ".git/objects" 目录下，里面包含了创建的各种对象及内容。 
 
-当执行 "git add" 命令时，暂存区的目录树被更新，同时工作区修改（或新增）的文件内容被写入到对象库中的一个新的对象中，而该对象的ID被记录在暂存区的文件索引中。  
-当执行提交操作（git commit）时，暂存区的目录树写到版本库（对象库）中，master 分支会做相应的更新。即 master 指向的目录树就是提交时暂存区的目录树。  
-当执行 "git reset HEAD" 命令时，暂存区的目录树会被重写，被 master 分支指向的目录树所替换，但是工作区不受影响。  
-当执行 "git rm --cached <file>" 命令时，会直接从暂存区删除文件，工作区则不做出改变。   
-当执行 "git checkout ." 或者 "git checkout -- <file>" 命令时，会用暂存区全部或指定的文件替换工作区的文件。这个操作很危险，会清除工作区中未暂存的改动。 
-当执行 "git checkout HEAD ." 或者 "git checkout HEAD <file>" 命令时，会用 HEAD 指向的 master 分支中的全部或者部分文件替换暂存区和以及工作区中的文件。这个命令也是极具危险性的，因为不但会清除工作区中未提交的改动，也会清除暂存区中未提交的改动。 
+- 当执行 "git add" 命令时，暂存区的目录树被更新，同时工作区修改（或新增）的文件内容被写入到对象库中的一个新的对象中，而该对象的ID被记录在暂存区的文件索引中。  
+- 当执行提交操作（git commit）时，暂存区的目录树写到版本库（对象库）中，master 分支会做相应的更新。即 master 指向的目录树就是提交时暂存区的目录树。  
+- 当执行 "git reset HEAD" 命令时，暂存区的目录树会被重写，被 master 分支指向的目录树所替换，但是工作区不受影响。    
+- 当执行 "git rm --cached <file>" 命令时，会直接从暂存区删除文件，工作区则不做出改变。     
+- 当执行 "git checkout ." 或者 "git checkout -- <file>" 命令时，会用暂存区全部或指定的文件替换工作区的文件。这个操作很危险，会清除工作区中未暂存的改动。 
+- 当执行 "git checkout HEAD ." 或者 "git checkout HEAD <file>" 命令时，会用 HEAD 指向的 master 分支中的全部或者部分文件替换暂存区和以及工作区中的文件。这个命令也是极具危险性的，因为不但会清除工作区中未提交的改动，也会清除暂存区中未提交的改动。 
 
-
-http://www.yiibai.com/uploads/images/201707/0707/497150749_38351.png
 
 ### 基本工作流程
 
-将Git的一个存储库克隆为工作副本。
-可以通过添加/编辑文件修改工作副本。如有必要，还可以通过让其他开发人员一起来更改/更新工作副本。
-在提交之前查看更改。
-提交更改：如果一切正常，那么将您的更改推送到存储库。
-提交后，如果意识到某些错误并修改错误后，则将最后一个正确的修改提交并将推送到存储库。 
+- clone一个远程仓库或者init本地仓库并关联远程仓库
+- 可以通过add添加文件改动
+- 在提交之前查看更改(diff)。
+- 提交更改(commit)，并将您的更改push到远程仓库。
+- 其他用户更改提交后，使用pull获取远程更改。 
 
 ![工作流程图](http://www.yiibai.com/uploads/images/201707/0707/497150749_38351.png)
 
@@ -103,9 +101,6 @@ http://www.yiibai.com/uploads/images/201707/0707/497150749_38351.png
 | 删除本地标签           | git tag -d <tag-name>                                            |
 | 删除远程标签           | **先删除本地标签**         git push origin :refs/tags/<tag-name> |
 | 切回到某个标签         | git checkout -b branch_name tag_name                             |
-
-
-
 
 
 ### 回滚
@@ -207,54 +202,30 @@ git log --pretty=oneline --graph --decorate --all
 | 分支导出文件 |git bundle create <file> <branch-name>
 |文件导入分支|git clone repo.bundle <repo-dir> -b <branch-name>|
 
+
+
+```sh
 ### 执行 rebase 之前自动 stash
+git rebase --autostash 
 
-```sh
-git rebase --autostash
-```
+### 从远程仓库根据 ID，拉下某一状态，到本地分支 
+git fetch origin pull/<id>/head:<branch-name> 
 
-### 从远程仓库根据 ID，拉下某一状态，到本地分支
+### 详细展示一行中的修改 
+git diff --word-diff 
 
-```sh
-git fetch origin pull/<id>/head:<branch-name>
-```
-
-### 详细展示一行中的修改
-
-```sh
-git diff --word-diff
-```
-
- 
-
-### 展示所有 alias 和 configs
-
-**注意：** config 分为：当前目录（local）和全局（golbal）的 config，默认为当前目录的 config
-
-```sh
+### 展示所有 alias 和 configs  
 git config --local --list (当前目录)
 git config --global --list (全局)
-```
 
-
-```sh
 git status --ignored ### 展示忽略的文件 
 git log Branch1 ^Branch2 ### commit 历史中显示 Branch1 有的，但是 Branch2 没有 commit 
 git log --show-signature ### 在 commit log 中显示 GPG 签名 
-git config --global --unset <entry-name>  ### 删除全局设置
-```
+git config --global --unset <entry-name>  ### 删除全局设置 
 
-### 新建并切换到新分支上，同时这个分支没有任何 commit
-
-相当于保存修改，但是重写 commit 历史
-
-```sh
+### 新建并切换到新分支上，同时这个分支没有任何 commit 
 git checkout --orphan <branch-name>
-```
 
-
-
-```sh
 git show <branch-name>:<file-name> ### 展示任意分支某一文件的内容 
 git clone -b <branch-name> --single-branch https://github.com/user/repo.git  ### clone 下来指定的单一分支
 git update-index --assume-unchanged path/to/file    ### 忽略某个文件的改动
@@ -267,7 +238,7 @@ git push -f <remote-name> <branch-name> ### 强制推送
 ```
 
 
-## 优雅的提交Commit信息
+## 附 优雅的提交Commit信息
 
 使用[Angular团队提交规范](https://github.com/angular/angular.js/blob/master/DEVELOPERS.md#-git-commit-guidelines)
 
