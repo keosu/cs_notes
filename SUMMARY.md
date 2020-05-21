@@ -5,6 +5,7 @@
     * [git](notes/tools/git.md)
     * [docker](notes/tools/docker.md)
     * [gdb](notes/tools/gdb.md)
+    * [conda](notes/tools/conda.md)
 * Languages
     * [cpp](notes/lang/lang_cpp.md)
     * [python](notes/lang/lang_python.md)
