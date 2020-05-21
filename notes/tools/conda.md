@@ -47,3 +47,10 @@ conda install --channel conda-forge PACKAGENAME
 克隆环境 | conda create --clone py37 --name py37-2
 使用环境 | source activate py37 
 删除环境 | conda env remove --name py37
+
+## 发布conda包
+
+上面主要介绍如何使用conda管理和使用包，我们也可以使用conda发布自己的包。
+事实上，conda不局限于python库，你可以管理发布C++库，你需要按照一定的规范来组织文件、编写配置文件和脚本。  
+
+[官方参考](https://docs.conda.io/projects/conda-build/en/latest/user-guide/tutorials/build-pkgs.html)
