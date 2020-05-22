@@ -6,6 +6,7 @@
     * [docker](notes/tools/docker.md)
     * [gdb](notes/tools/gdb.md)
     * [conda](notes/tools/conda.md)
+    * [图片视频处理工具](notes/tools/image_video_process.md)
 * Languages
     * [cpp](notes/lang/lang_cpp.md)
     * [C++基础问题](notes/lang/lang_cpp_q&a.md)
