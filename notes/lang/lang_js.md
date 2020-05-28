@@ -1,6 +1,6 @@
   
   
-# 数据类型   
+# 一 数据类型   
   
 ### Number  
 JavaScript不区分整数和浮点数，统一用Number表示，以下都是合法的Number类型：  
@@ -81,7 +81,7 @@ JavaScript在设计之初，为了方便初学者学习，并不强制要求用v
 - 局部(函数内用，使用 var声明)
 - 块级作用域( ES6新增, let命令用来进行变量声明)
 
-# javascript 常用对象
+# 二 javascript 常用对象
 
 JavaScript的对象是一组由键-值组成的无序集合，例如：  
 ```JavaScript  
@@ -114,18 +114,18 @@ arr[5]; // 返回索引为5的元素，即true
 arr[6]; // 索引超出了范围，返回undefined  
 
 - concat()
-- indexOf()
-- join()
+- indexOf() ： 查找，返回位置，没有返回-1
+- join() ：转换成字符串，默认逗号分隔
 - lastIndexOf()
-- pop()
-- push()
+- pop() ： 移除最后一个元素
+- push() ： 在最后增加一个元素，返回长度
 - reverse()
-- shift()
-- slice()
+- shift() : 移除第一个元素
+- slice() 
 - sort()
 - splice()
 - toString()
-- unshift()
+- unshift() ：在最前面增加一个元素，返回长度
 - valueOf()
 
 ## String 
@@ -141,7 +141,7 @@ arr[6]; // 索引超出了范围，返回undefined
 - replace()
 - search()
 - slice()
-- split()
+- split() ： 按指定分隔符分割成数组
 - substr()
 - substring()
 - toLowerCase()
@@ -165,7 +165,7 @@ arr[6]; // 索引超出了范围，返回undefined
 ## Set
 Set和Map类似，也是一组key的集合，但不存储value。由于key不能重复，所以，在Set中，没有重复的key。
 
-# 函数
+# 三 函数
 
 定义函数
 
