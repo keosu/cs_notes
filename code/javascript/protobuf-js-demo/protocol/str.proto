@@ -1,0 +1,10 @@
+//创建 .proto 文件，定义数据结构
+syntax='proto3';
+message String{
+    // 类型：int32、int64、sint32、sint64、string、32-bit ....
+    // 字段编号：0 ~ 536870911（除去 19000 到 19999 之间的数字）
+    //字段类型 名称 = 字段编号;
+    string Val=1;
+}
+
+//编译命令：protoc --js_out=import_style=commonjs,binary:. str.proto
