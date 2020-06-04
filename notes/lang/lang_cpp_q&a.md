@@ -73,7 +73,7 @@ vector<int> v(arr, arr + 3);
 //在C++11中，我们能够使用下面语法来进行替换：
 int arr[3]{1, 2, 3};
 vector<int> iv{1, 2, 3};
-map<int, string>{{1, "a"}, {2, "b"}};
+map<int, string>{ {1, "a"}, {2, "b"} };
 string str{"Hello World"};
 ```
 
