@@ -49,7 +49,7 @@ nullptr是为了解决原来C++中NULL的二义性问题而引进的一种新的
 
 - lambda表达式，创建并定义匿名的函数对象
 Lambda的语法例如以下： [函数对象參数]（操作符重载函数參数）->返回值类型{函数体}
-```c++
+```cpp
 vector<int> iv{5, 4, 3, 2, 1};
 int a = 2, b = 1;
 for_each(iv.begin(), iv.end(), [b](int &x){cout<<(x + b)<<endl;}); // (1)
@@ -67,7 +67,7 @@ auto t2 = make_tuple(1, 2.0, "C++ 11", {1, 0, 2});
 避免了从前的pair中嵌套pair的丑陋做法。使得代码更加整洁
 
 - 更加优雅的初始化方法，在引入C++11之前。仅仅有数组能使用初始化列表，其它容器想要使用初始化列表，仅仅能用下面方法：
-```c++
+```cpp
 int arr[3] = {1, 2, 3}
 vector<int> v(arr, arr + 3);
 //在C++11中，我们能够使用下面语法来进行替换：
@@ -98,7 +98,7 @@ string str{"Hello World"};
 
 ### 2. C++11引入的unique_ptr  
   也不支持复制和赋值，但比auto_ptr好，直接赋值会编译出错。实在想赋值的话，需要使用：std::move。例如：
-  ```c++
+  ```cpp
   std::unique_ptr<int> p1(new int(5)) // #4
   std::unique_ptr<int> p2 = p1; // 编译会出错 //#5
   std::unique_ptr<int> p3 = std::move(p1); // 转移所有权, 现在那块内存归p3所有, p1成为无效的指针. //#6  
@@ -106,7 +106,7 @@ string str{"Hello World"};
 
   编译器认为语句#5非法，因此，unique_ptr比auto_ptr更安全。
   但unique_ptr还有更聪明的地方。 有时候，会将一个智能指针赋给另一个并不会留下危险的悬挂指针。当程序试图将一个 unique_ptr 赋值给另一个时，如果源 unique_ptr 是个临时右值，编译器允许这么做；如果源 unique_ptr 将存在一段时间，编译器将禁止这么做  
-  ```c++
+  ```cpp
   unique_ptr<string> pu1(new string ("hello world"));
   unique_ptr<string> pu2;
   pu2 = pu1; // #1 not allowed
@@ -323,7 +323,7 @@ unordered_map底层是一个防冗余的哈希表，存储时根据key的hash值
   2. 当函数的参数是类的对象时，就是值传递的时候，如果是引用传递则不会调用  
   3. 当函数的返回值是类的对象或者引用的时候
 
-```c++
+```cpp
 #include <iostream>
 #include <string>
 using namespace std;
@@ -393,7 +393,7 @@ extern "C"的主要作用就是为了能够正确实现C++代码调用其他C语
 ## 29. typdef和define区别
 #define是预处理命令，在预处理是执行简单的替换，不做正确性的检查
 typedef是在编译时处理的，它是在自己的作用域内给已经存在的类型一个别名
-```c++
+```cpp
   typedef (int*) pINT;
   #define pINT2 int* 
   pINT a,b; // 效果同int *a; int *b; 表示定义了两个整型指针变量。

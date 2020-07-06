@@ -93,7 +93,7 @@ JavaScript在设计之初，为了方便初学者学习，并不强制要求用v
 # 二 javascript 常用对象
 
 JavaScript的对象是一组由键-值组成的无序集合，例如：  
-```JavaScript  
+```javaScript  
 var person = {  
     name: 'Bob',  
     age: 20,  

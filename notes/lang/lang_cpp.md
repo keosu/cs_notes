@@ -42,7 +42,7 @@ private        | private    |  private     |    不可见
 纯虚函数: virtual 返回值类型 函数名 (函数参数) = 0;  
 抽象类: 包含纯虚函数的类称为抽象类(Abstract Class),它无法实例化，也就是无法创建对象。  
 
-```c++
+```cpp
 #include <iostream>
 using namespace std;
 
@@ -97,7 +97,7 @@ int main(int argc, char **argv)
 
 ### 智能指针
 
-```c++
+```cpp
 std::shared_ptr<int> sp(new int[10], std::default_delete<int[]>());
  
 // 也可以使用一下的lambda表达式来自定义删除函数 
