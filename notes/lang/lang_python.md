@@ -59,6 +59,7 @@ print(t != f)  # Logical XOR; prints "True"
 ```
 
 - Strings(字符串类型)：Python对字符串有很好的支持：
+
 ```python
 hello = 'hello'    # String literals can use single quotes
 world = "world"    # or double quotes; it does not matter.
@@ -69,7 +70,7 @@ print(hw)  # prints "hello world"
 hw12 = '%s %s %d' % (hello, world, 12)  # sprintf style string formatting
 print(hw12)  # prints "hello world 12"
 
-# String对象有许多有用的方法；例如：
+#String对象有许多有用的方法，例如：
 s = "hello"
 print(s.capitalize())  # Capitalize a string; prints "Hello"
 print(s.upper())       # Convert a string to uppercase; prints "HELLO"
