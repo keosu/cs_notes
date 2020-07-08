@@ -403,87 +403,85 @@ print(<span class="hljs-keyword">not</span> t)   <span class="hljs-comment"># Lo
 print(t != f)  <span class="hljs-comment"># Logical XOR; prints &quot;True&quot;</span>
 </code></pre>
 </li>
-<li><p>Strings(&#x5B57;&#x7B26;&#x4E32;&#x7C7B;&#x578B;)&#xFF1A;Python&#x5BF9;&#x5B57;&#x7B26;&#x4E32;&#x6709;&#x5F88;&#x597D;&#x7684;&#x652F;&#x6301;&#xFF1A;
-```python
-hello = &apos;hello&apos;    # String literals can use single quotes
-world = &quot;world&quot;    # or double quotes; it does not matter.
-print(hello)       # Prints &quot;hello&quot;
-print(len(hello))  # String length; prints &quot;5&quot;
-hw = hello + &apos; &apos; + world  # String concatenation
-print(hw)  # prints &quot;hello world&quot;
-hw12 = &apos;%s %s %d&apos; % (hello, world, 12)  # sprintf style string formatting
-print(hw12)  # prints &quot;hello world 12&quot;</p>
+<li><p>Strings(&#x5B57;&#x7B26;&#x4E32;&#x7C7B;&#x578B;)&#xFF1A;Python&#x5BF9;&#x5B57;&#x7B26;&#x4E32;&#x6709;&#x5F88;&#x597D;&#x7684;&#x652F;&#x6301;&#xFF1A;</p>
 </li>
 </ul>
-<h1 id="string&#x5BF9;&#x8C61;&#x6709;&#x8BB8;&#x591A;&#x6709;&#x7528;&#x7684;&#x65B9;&#x6CD5;&#xFF1B;&#x4F8B;&#x5982;&#xFF1A;">String&#x5BF9;&#x8C61;&#x6709;&#x8BB8;&#x591A;&#x6709;&#x7528;&#x7684;&#x65B9;&#x6CD5;&#xFF1B;&#x4F8B;&#x5982;&#xFF1A;</h1>
-<p>s = &quot;hello&quot;
-print(s.capitalize())  # Capitalize a string; prints &quot;Hello&quot;
-print(s.upper())       # Convert a string to uppercase; prints &quot;HELLO&quot;
-print(s.rjust(7))      # Right-justify a string, padding with spaces; prints &quot;  hello&quot;
-print(s.center(7))     # Center a string, padding with spaces; prints &quot; hello &quot;
-print(s.replace(&apos;l&apos;, &apos;(ell)&apos;))  # Replace all instances of one substring with another;</p>
-<pre><code>                            # prints &quot;he(ell)(ell)o&quot;
-</code></pre><p>print(&apos;  world &apos;.strip())  # Strip leading and trailing whitespace; prints &quot;world&quot;</p>
-<pre><code>
+<pre><code class="lang-python">hello = <span class="hljs-string">&apos;hello&apos;</span>    <span class="hljs-comment"># String literals can use single quotes</span>
+world = <span class="hljs-string">&quot;world&quot;</span>    <span class="hljs-comment"># or double quotes; it does not matter.</span>
+print(hello)       <span class="hljs-comment"># Prints &quot;hello&quot;</span>
+print(len(hello))  <span class="hljs-comment"># String length; prints &quot;5&quot;</span>
+hw = hello + <span class="hljs-string">&apos; &apos;</span> + world  <span class="hljs-comment"># String concatenation</span>
+print(hw)  <span class="hljs-comment"># prints &quot;hello world&quot;</span>
+hw12 = <span class="hljs-string">&apos;%s %s %d&apos;</span> % (hello, world, <span class="hljs-number">12</span>)  <span class="hljs-comment"># sprintf style string formatting</span>
+print(hw12)  <span class="hljs-comment"># prints &quot;hello world 12&quot;</span>
 
-# &#x5BB9;&#x5668;(Containers)
-Python&#x5305;&#x542B;&#x51E0;&#x79CD;&#x5185;&#x7F6E;&#x7684;&#x5BB9;&#x5668;&#x7C7B;&#x578B;&#xFF1A;&#x5217;&#x8868;&#x3001;&#x5B57;&#x5178;&#x3001;&#x96C6;&#x5408;&#x548C;&#x5143;&#x7EC4;&#x3002;
+<span class="hljs-comment">#String&#x5BF9;&#x8C61;&#x6709;&#x8BB8;&#x591A;&#x6709;&#x7528;&#x7684;&#x65B9;&#x6CD5;&#xFF0C;&#x4F8B;&#x5982;&#xFF1A;</span>
+s = <span class="hljs-string">&quot;hello&quot;</span>
+print(s.capitalize())  <span class="hljs-comment"># Capitalize a string; prints &quot;Hello&quot;</span>
+print(s.upper())       <span class="hljs-comment"># Convert a string to uppercase; prints &quot;HELLO&quot;</span>
+print(s.rjust(<span class="hljs-number">7</span>))      <span class="hljs-comment"># Right-justify a string, padding with spaces; prints &quot;  hello&quot;</span>
+print(s.center(<span class="hljs-number">7</span>))     <span class="hljs-comment"># Center a string, padding with spaces; prints &quot; hello &quot;</span>
+print(s.replace(<span class="hljs-string">&apos;l&apos;</span>, <span class="hljs-string">&apos;(ell)&apos;</span>))  <span class="hljs-comment"># Replace all instances of one substring with another;</span>
+                                <span class="hljs-comment"># prints &quot;he(ell)(ell)o&quot;</span>
+print(<span class="hljs-string">&apos;  world &apos;</span>.strip())  <span class="hljs-comment"># Strip leading and trailing whitespace; prints &quot;world&quot;</span>
+</code></pre>
+<h1 id="&#x5BB9;&#x5668;containers">&#x5BB9;&#x5668;(Containers)</h1>
+<p>Python&#x5305;&#x542B;&#x51E0;&#x79CD;&#x5185;&#x7F6E;&#x7684;&#x5BB9;&#x5668;&#x7C7B;&#x578B;&#xFF1A;&#x5217;&#x8868;&#x3001;&#x5B57;&#x5178;&#x3001;&#x96C6;&#x5408;&#x548C;&#x5143;&#x7EC4;&#x3002;</p>
+<h2 id="&#x5217;&#x8868;lists">&#x5217;&#x8868;(Lists)</h2>
+<p>&#x5217;&#x8868;&#x5176;&#x5B9E;&#x5C31;&#x662F;Python&#x4E2D;&#x7684;&#x6570;&#x7EC4;&#xFF0C;&#x4F46;&#x662F;&#x53EF;&#x4EE5;&#x5B83;&#x53EF;&#x4EE5;&#x52A8;&#x6001;&#x7684;&#x8C03;&#x6574;&#x5927;&#x5C0F;&#x5E76;&#x4E14;&#x53EF;&#x4EE5;&#x5305;&#x542B;&#x4E0D;&#x540C;&#x7C7B;&#x578B;&#x7684;&#x5143;&#x7D20;&#xFF1A;</p>
+<pre><code class="lang-python">xs = [<span class="hljs-number">3</span>, <span class="hljs-number">1</span>, <span class="hljs-number">2</span>]    <span class="hljs-comment"># Create a list</span>
+print(xs, xs[<span class="hljs-number">2</span>])  <span class="hljs-comment"># Prints &quot;[3, 1, 2] 2&quot;</span>
+print(xs[<span class="hljs-number">-1</span>])     <span class="hljs-comment"># Negative indices count from the end of the list; prints &quot;2&quot;</span>
+xs[<span class="hljs-number">2</span>] = <span class="hljs-string">&apos;foo&apos;</span>     <span class="hljs-comment"># Lists can contain elements of different types</span>
+print(xs)         <span class="hljs-comment"># Prints &quot;[3, 1, &apos;foo&apos;]&quot;</span>
+xs.append(<span class="hljs-string">&apos;bar&apos;</span>)  <span class="hljs-comment"># Add a new element to the end of the list</span>
+print(xs)         <span class="hljs-comment"># Prints &quot;[3, 1, &apos;foo&apos;, &apos;bar&apos;]&quot;</span>
+x = xs.pop()      <span class="hljs-comment"># Remove and return the last element of the list</span>
+print(x, xs)      <span class="hljs-comment"># Prints &quot;bar [3, 1, &apos;foo&apos;]&quot;</span>
 
-## &#x5217;&#x8868;(Lists)
-&#x5217;&#x8868;&#x5176;&#x5B9E;&#x5C31;&#x662F;Python&#x4E2D;&#x7684;&#x6570;&#x7EC4;&#xFF0C;&#x4F46;&#x662F;&#x53EF;&#x4EE5;&#x5B83;&#x53EF;&#x4EE5;&#x52A8;&#x6001;&#x7684;&#x8C03;&#x6574;&#x5927;&#x5C0F;&#x5E76;&#x4E14;&#x53EF;&#x4EE5;&#x5305;&#x542B;&#x4E0D;&#x540C;&#x7C7B;&#x578B;&#x7684;&#x5143;&#x7D20;&#xFF1A;
-```python
-xs = [3, 1, 2]    # Create a list
-print(xs, xs[2])  # Prints &quot;[3, 1, 2] 2&quot;
-print(xs[-1])     # Negative indices count from the end of the list; prints &quot;2&quot;
-xs[2] = &apos;foo&apos;     # Lists can contain elements of different types
-print(xs)         # Prints &quot;[3, 1, &apos;foo&apos;]&quot;
-xs.append(&apos;bar&apos;)  # Add a new element to the end of the list
-print(xs)         # Prints &quot;[3, 1, &apos;foo&apos;, &apos;bar&apos;]&quot;
-x = xs.pop()      # Remove and return the last element of the list
-print(x, xs)      # Prints &quot;bar [3, 1, &apos;foo&apos;]&quot;
+<span class="hljs-comment">#&#x5207;&#x7247;(Slicing): &#x9664;&#x4E86;&#x4E00;&#x6B21;&#x8BBF;&#x95EE;&#x4E00;&#x4E2A;&#x5217;&#x8868;&#x5143;&#x7D20;&#x4E4B;&#x5916;&#xFF0C;Python&#x8FD8;&#x63D0;&#x4F9B;&#x4E86;&#x8BBF;&#x95EE;&#x5B50;&#x5217;&#x8868;&#x7684;&#x7B80;&#x660E;&#x8BED;&#x6CD5;; &#x8FD9;&#x88AB;&#x79F0;&#x4E3A;&#x5207;&#x7247;&#xFF1A;</span>
 
-#&#x5207;&#x7247;(Slicing): &#x9664;&#x4E86;&#x4E00;&#x6B21;&#x8BBF;&#x95EE;&#x4E00;&#x4E2A;&#x5217;&#x8868;&#x5143;&#x7D20;&#x4E4B;&#x5916;&#xFF0C;Python&#x8FD8;&#x63D0;&#x4F9B;&#x4E86;&#x8BBF;&#x95EE;&#x5B50;&#x5217;&#x8868;&#x7684;&#x7B80;&#x660E;&#x8BED;&#x6CD5;; &#x8FD9;&#x88AB;&#x79F0;&#x4E3A;&#x5207;&#x7247;&#xFF1A;
+nums = list(range(<span class="hljs-number">5</span>))     <span class="hljs-comment"># range is a built-in function that creates a list of integers</span>
+print(nums)               <span class="hljs-comment"># Prints &quot;[0, 1, 2, 3, 4]&quot;</span>
+print(nums[<span class="hljs-number">2</span>:<span class="hljs-number">4</span>])          <span class="hljs-comment"># Get a slice from index 2 to 4 (exclusive); prints &quot;[2, 3]&quot;</span>
+print(nums[<span class="hljs-number">2</span>:])           <span class="hljs-comment"># Get a slice from index 2 to the end; prints &quot;[2, 3, 4]&quot;</span>
+print(nums[:<span class="hljs-number">2</span>])           <span class="hljs-comment"># Get a slice from the start to index 2 (exclusive); prints &quot;[0, 1]&quot;</span>
+print(nums[:])            <span class="hljs-comment"># Get a slice of the whole list; prints &quot;[0, 1, 2, 3, 4]&quot;</span>
+print(nums[:<span class="hljs-number">-1</span>])          <span class="hljs-comment"># Slice indices can be negative; prints &quot;[0, 1, 2, 3]&quot;</span>
+nums[<span class="hljs-number">2</span>:<span class="hljs-number">4</span>] = [<span class="hljs-number">8</span>, <span class="hljs-number">9</span>]        <span class="hljs-comment"># Assign a new sublist to a slice</span>
+print(nums)               <span class="hljs-comment"># Prints &quot;[0, 1, 8, 9, 4]&quot;</span>
 
-nums = list(range(5))     # range is a built-in function that creates a list of integers
-print(nums)               # Prints &quot;[0, 1, 2, 3, 4]&quot;
-print(nums[2:4])          # Get a slice from index 2 to 4 (exclusive); prints &quot;[2, 3]&quot;
-print(nums[2:])           # Get a slice from index 2 to the end; prints &quot;[2, 3, 4]&quot;
-print(nums[:2])           # Get a slice from the start to index 2 (exclusive); prints &quot;[0, 1]&quot;
-print(nums[:])            # Get a slice of the whole list; prints &quot;[0, 1, 2, 3, 4]&quot;
-print(nums[:-1])          # Slice indices can be negative; prints &quot;[0, 1, 2, 3]&quot;
-nums[2:4] = [8, 9]        # Assign a new sublist to a slice
-print(nums)               # Prints &quot;[0, 1, 8, 9, 4]&quot;
+<span class="hljs-comment">#(&#x5FAA;&#x73AF;)Loops: &#x4F60;&#x53EF;&#x4EE5;&#x5FAA;&#x73AF;&#x904D;&#x5386;&#x5217;&#x8868;&#x7684;&#x5143;&#x7D20;&#xFF0C;&#x5982;&#x4E0B;&#x6240;&#x793A;&#xFF1A;</span>
 
-#(&#x5FAA;&#x73AF;)Loops: &#x4F60;&#x53EF;&#x4EE5;&#x5FAA;&#x73AF;&#x904D;&#x5386;&#x5217;&#x8868;&#x7684;&#x5143;&#x7D20;&#xFF0C;&#x5982;&#x4E0B;&#x6240;&#x793A;&#xFF1A;
-
-animals = [&apos;cat&apos;, &apos;dog&apos;, &apos;monkey&apos;]
-for animal in animals:
+animals = [<span class="hljs-string">&apos;cat&apos;</span>, <span class="hljs-string">&apos;dog&apos;</span>, <span class="hljs-string">&apos;monkey&apos;</span>]
+<span class="hljs-keyword">for</span> animal <span class="hljs-keyword">in</span> animals:
     print(animal)
-# Prints &quot;cat&quot;, &quot;dog&quot;, &quot;monkey&quot;, each on its own line.
+<span class="hljs-comment"># Prints &quot;cat&quot;, &quot;dog&quot;, &quot;monkey&quot;, each on its own line.</span>
 &#x5982;&#x679C;&#x8981;&#x8BBF;&#x95EE;&#x5FAA;&#x73AF;&#x4F53;&#x5185;&#x6BCF;&#x4E2A;&#x5143;&#x7D20;&#x7684;&#x7D22;&#x5F15;&#xFF0C;&#x8BF7;&#x4F7F;&#x7528;&#x5185;&#x7F6E;&#x7684; enumerate &#x51FD;&#x6570;&#xFF1A;
 
-animals = [&apos;cat&apos;, &apos;dog&apos;, &apos;monkey&apos;]
-for idx, animal in enumerate(animals):
-    print(&apos;#%d: %s&apos; % (idx + 1, animal))
-# Prints &quot;#1: cat&quot;, &quot;#2: dog&quot;, &quot;#3: monkey&quot;, each on its own line
+animals = [<span class="hljs-string">&apos;cat&apos;</span>, <span class="hljs-string">&apos;dog&apos;</span>, <span class="hljs-string">&apos;monkey&apos;</span>]
+<span class="hljs-keyword">for</span> idx, animal <span class="hljs-keyword">in</span> enumerate(animals):
+    print(<span class="hljs-string">&apos;#%d: %s&apos;</span> % (idx + <span class="hljs-number">1</span>, animal))
+<span class="hljs-comment"># Prints &quot;#1: cat&quot;, &quot;#2: dog&quot;, &quot;#3: monkey&quot;, each on its own line</span>
 &#x5217;&#x8868;&#x63A8;&#x5BFC;&#x5F0F;(List comprehensions): &#x7F16;&#x7A0B;&#x65F6;&#xFF0C;&#x6211;&#x4EEC;&#x7ECF;&#x5E38;&#x60F3;&#x8981;&#x5C06;&#x4E00;&#x79CD;&#x6570;&#x636E;&#x8F6C;&#x6362;&#x4E3A;&#x53E6;&#x4E00;&#x79CD;&#x6570;&#x636E;&#x3002; &#x4E3E;&#x4E2A;&#x7B80;&#x5355;&#x7684;&#x4F8B;&#x5B50;&#xFF0C;&#x601D;&#x8003;&#x4EE5;&#x4E0B;&#x8BA1;&#x7B97;&#x5E73;&#x65B9;&#x6570;&#x7684;&#x4EE3;&#x7801;&#xFF1A;
 
-nums = [0, 1, 2, 3, 4]
+nums = [<span class="hljs-number">0</span>, <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>]
 squares = []
-for x in nums:
-    squares.append(x ** 2)
-print(squares)   # Prints [0, 1, 4, 9, 16]
+<span class="hljs-keyword">for</span> x <span class="hljs-keyword">in</span> nums:
+    squares.append(x ** <span class="hljs-number">2</span>)
+print(squares)   <span class="hljs-comment"># Prints [0, 1, 4, 9, 16]</span>
 &#x4F60;&#x53EF;&#x4EE5;&#x4F7F;&#x7528; &#x5217;&#x8868;&#x63A8;&#x5BFC;&#x5F0F; &#x4F7F;&#x8FD9;&#x6BB5;&#x4EE3;&#x7801;&#x66F4;&#x7B80;&#x5355;:
 
-nums = [0, 1, 2, 3, 4]
-squares = [x ** 2 for x in nums]
-print(squares)   # Prints [0, 1, 4, 9, 16]
+nums = [<span class="hljs-number">0</span>, <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>]
+squares = [x ** <span class="hljs-number">2</span> <span class="hljs-keyword">for</span> x <span class="hljs-keyword">in</span> nums]
+print(squares)   <span class="hljs-comment"># Prints [0, 1, 4, 9, 16]</span>
 &#x5217;&#x8868;&#x63A8;&#x5BFC;&#x8FD8;&#x53EF;&#x4EE5;&#x5305;&#x542B;&#x6761;&#x4EF6;&#xFF1A;
 
-nums = [0, 1, 2, 3, 4]
-even_squares = [x ** 2 for x in nums if x % 2 == 0]
-print(even_squares)  # Prints &quot;[0, 4, 16]&quot;
-</code></pre><h2 id="&#x5B57;&#x5178;">&#x5B57;&#x5178;</h2>
+nums = [<span class="hljs-number">0</span>, <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>]
+even_squares = [x ** <span class="hljs-number">2</span> <span class="hljs-keyword">for</span> x <span class="hljs-keyword">in</span> nums <span class="hljs-keyword">if</span> x % <span class="hljs-number">2</span> == <span class="hljs-number">0</span>]
+print(even_squares)  <span class="hljs-comment"># Prints &quot;[0, 4, 16]&quot;</span>
+</code></pre>
+<h2 id="&#x5B57;&#x5178;">&#x5B57;&#x5178;</h2>
 <p>&#x5B57;&#x5178;&#x5B58;&#x50A8;&#xFF08;&#x952E;&#xFF0C;&#x503C;&#xFF09;&#x5BF9;&#xFF0C;&#x7C7B;&#x4F3C;&#x4E8E;Java&#x4E2D;&#x7684;Map&#x6216;Javascript&#x4E2D;&#x7684;&#x5BF9;&#x8C61;&#x3002;&#x4F60;&#x53EF;&#x4EE5;&#x50CF;&#x8FD9;&#x6837;&#x4F7F;&#x7528;&#x5B83;&#xFF1A;</p>
 <pre><code class="lang-python">d = {<span class="hljs-string">&apos;cat&apos;</span>: <span class="hljs-string">&apos;cute&apos;</span>, <span class="hljs-string">&apos;dog&apos;</span>: <span class="hljs-string">&apos;furry&apos;</span>}  <span class="hljs-comment"># Create a new dictionary with some data</span>
 print(d[<span class="hljs-string">&apos;cat&apos;</span>])       <span class="hljs-comment"># Get an entry from a dictionary; prints &quot;cute&quot;</span>
@@ -646,7 +644,7 @@ print(d[(<span class="hljs-number">1</span>, <span class="hljs-number">2</span>)
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"python","level":"1.3.3","depth":2,"next":{"title":"javascript","level":"1.3.4","depth":2,"path":"notes/lang/lang_js.md","ref":"notes/lang/lang_js.md","articles":[]},"previous":{"title":"C++基础问题","level":"1.3.2","depth":2,"path":"notes/lang/lang_cpp_q&a.md","ref":"notes/lang/lang_cpp_q&a.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"notes/lang/lang_python.md","mtime":"2020-07-08T14:46:31.729Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-07-08T14:47:04.617Z"},"basePath":"../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"python","level":"1.3.3","depth":2,"next":{"title":"javascript","level":"1.3.4","depth":2,"path":"notes/lang/lang_js.md","ref":"notes/lang/lang_js.md","articles":[]},"previous":{"title":"C++基础问题","level":"1.3.2","depth":2,"path":"notes/lang/lang_cpp_q&a.md","ref":"notes/lang/lang_cpp_q&a.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"notes/lang/lang_python.md","mtime":"2020-07-08T14:59:47.498Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-07-08T15:00:21.010Z"},"basePath":"../..","book":{"language":""}});
         });
     </script>
 </div>
