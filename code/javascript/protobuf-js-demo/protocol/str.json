@@ -1,0 +1,12 @@
+{
+  "nested": {
+    "String": {
+      "fields": {
+        "Val": {
+          "type": "string",
+          "id": 1
+        }
+      }
+    }
+  }
+}

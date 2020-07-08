@@ -1,0 +1,16 @@
+{
+    "C_Cpp.default.cppStandard": "c++20",
+    "C_Cpp.default.cStandard": "c11",
+    "files.associations": {
+        "filesystem": "cpp",
+        "ostream": "cpp",
+        "*.tcc": "cpp",
+        "deque": "cpp",
+        "string": "cpp",
+        "unordered_map": "cpp",
+        "vector": "cpp",
+        "iostream": "cpp"
+    },
+    "debug.console.fontSize": 15,
+    "C_Cpp.default.configurationProvider": "vector-of-bool.cmake-tools"
+}
