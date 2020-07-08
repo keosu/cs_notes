@@ -70,7 +70,6 @@ hw12 = '%s %s %d' % (hello, world, 12)  # sprintf style string formatting
 print(hw12)  # prints "hello world 12"
 
 # String对象有许多有用的方法；例如：
-
 s = "hello"
 print(s.capitalize())  # Capitalize a string; prints "Hello"
 print(s.upper())       # Convert a string to uppercase; prints "HELLO"
