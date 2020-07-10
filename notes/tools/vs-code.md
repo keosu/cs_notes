@@ -4,7 +4,7 @@
 
 ## 1 download remote server(ssh/wsl) extreamly slow
 
-```
+```sh
 Attempt to connect, let it fail
 On server, get the commit id
 
@@ -72,7 +72,7 @@ lib.setValue(1111)
 ```
 
 #### launch.json
-```
+```json
 { 
   "version": "0.2.0",
   "configurations": [
@@ -107,7 +107,7 @@ lib.setValue(1111)
 ## VSCODE ARM remote debug 
 
 ### 示例配置文件
-```
+```json
 { 
   "version": "0.2.0",
   "configurations": [
@@ -147,7 +147,7 @@ lib.setValue(1111)
 
 
 ## VSCODE other debug conf template
-```
+```json
 {
   // Use IntelliSense to learn about possible attributes.
   // Hover to view descriptions of existing attributes.
@@ -199,7 +199,7 @@ lib.setValue(1111)
 }
 ```
 tasks.json
-```
+```json
 {
 
   "version": "2.0.0",
@@ -229,7 +229,7 @@ tasks.json
    ## typescript
     
     
- ```
+ ```json
     
     {
       "name": "Current TS File",

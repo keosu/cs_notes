@@ -27,11 +27,12 @@
 
   继承属性：public protected private  
   下面列出三种不同的继承方式的基类特性和派生类特性：  
-继承方式\基类状态 | public     |  protected   |    private
----------------|------------|--------------|---
-public         | public     |  protected   |    不可见
-protected      | protected  |  protected   |    不可见 
-private        | private    |  private     |    不可见 
+  
+继承方式\基类状态 | public     |  protected   |    private  
+---------------|------------|--------------|---  
+public         | public     |  protected   |    不可见  
+protected      | protected  |  protected   |    不可见   
+private        | private    |  private     |    不可见   
 
   多继承
   虚继承： 解决多继承的二义问题
