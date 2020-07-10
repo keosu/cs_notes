@@ -5,6 +5,7 @@
     * [C++基础问题](notes/lang/lang_cpp_q&a.md)
     * [python](notes/lang/lang_python.md)
     * [javascript](notes/lang/lang_js.md) 
+    * [typescript](notes/lang/lang_ts.md) 
     * [shell](notes/lang/lang_shell.md)
 * Tools
     * [git](notes/tools/git.md)
