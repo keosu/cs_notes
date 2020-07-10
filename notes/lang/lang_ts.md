@@ -1,3 +1,5 @@
+# Typescript基础
+
 # ch1 基本类型
 
 ```js
