@@ -17,4 +17,5 @@
 * Algorithm
     * [常用算法](notes/algorithm/algorithm-by-examples.md)
     * [无锁队列](notes/algorithm/lockfree-queue.md)
+    * [BERT](notes/algorithm/bert.md)
 
