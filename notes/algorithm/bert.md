@@ -115,4 +115,35 @@ Attention:  Attention 机制的中文名叫 "注意力机制" ，顾名思义�
 | Yahoo! Answers    | 1400000    | 60000      | 问答系统     | 10     | 英文     |
  
 BERT 模型在 AG’s News 数据集上取得了最高的分类准确率，在 Yelp Review Full 和 Yahoo! Answers 数据集上也都取得了次高的分类准确率。需要注意的是，目前仅使用 12 层 Transformer Encoder 结构的 BERT 模型进行实验，后续会进一步检验 24 层 TransformerEncoder 结构的 BERT 模型的分类效果，可以期待， BERT 模型的分类效果应该会随着网络结构的加深而进一步有所提高。
- 
+
+
+## NLP
+
+### NLP历史
+- 基于规则 (复杂人工定义的规则)
+- 基于统计 (朴素贝叶斯NB,隐马尔科夫模型HMM)
+- 基于深度学习 word embedding， LSTM
+
+### 分类
+
+- 自然语言理解(分词，词性标注，分类，相似性，句法分析)
+- 自然语言生成(机器翻译，问答，自动摘要)
+
+### 评估基准 
+
+- 英文基准：[glue](https://gluebenchmark.com/tasks)
+- 中文基准：[clue](https://www.cluebenchmarks.com/introduce.html)
+
+### 模型
+
+- 华为 Noah's Ark Lab
+   https://github.com/huawei-noah/Pretrained-Language-Model
+10.5B token, 中文维基+百科+新闻 
+
+- 百度 
+  https://github.com/PaddlePaddle/ERNIE
+  v1.0, 9B token, weiki+baike+tieba
+  v2.0, 15B token, Baike+News+Dialog
+
+- Google
+  https://github.com/google-research/bert
