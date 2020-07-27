@@ -28,7 +28,16 @@ endif(USE_MYMATH)
 add_executable(sample src/main.cpp)  
 target_link_libraries(sample ${EXTERNAL_LIBS})    
 ```    
-    
+## 基本语法规则：  
+0. cmake变量使用${}方式取值,但是在IF控制语句中是直接使用变量名  
+1. 环境变量使用$ENV{}方式取值,使用SET(ENV{VAR} VALUE)赋值  
+2. 指令(参数1 参数2…)  
+>    参数使用括弧括起,参数之间使用空格或分号分开。  
+    以ADD_EXECUTABLE指令为例：  
+    ADD_EXECUTABLE(hello main.c func.c)或者  
+    ADD_EXECUTABLE(hello main.c;func.c)  
+    指令是大小写无关的,参数和变量是大小写相关的。推荐你全部使用大写指令。 
+
 ## cmake中一些预定义变量  
 | 变量                              | 含义                                                         |
 | --------------------------------- | ------------------------------------------------------------ |
@@ -67,19 +76,27 @@ target_link_libraries(sample ${EXTERNAL_LIBS})
 | CMAKE_CXX_FLAGS   | 设置 C++编译选项开关选项 |
 | CMAKE_C_FLAGS     | 设置 C 编译选项          |
 
-# cmake常用命令  
+
     
-## 基本语法规则：  
-0. cmake变量使用${}方式取值,但是在IF控制语句中是直接使用变量名  
-1. 环境变量使用$ENV{}方式取值,使用SET(ENV{VAR} VALUE)赋值  
-2. 指令(参数1 参数2…)  
->    参数使用括弧括起,参数之间使用空格或分号分开。  
-    以ADD_EXECUTABLE指令为例：  
-    ADD_EXECUTABLE(hello main.c func.c)或者  
-    ADD_EXECUTABLE(hello main.c;func.c)  
-    指令是大小写无关的,参数和变量是大小写相关的。推荐你全部使用大写指令。  
-    
-## 部分常用命令列表：  
+## 常用命令
+
+| 命令                   | 含义             |
+| ---------------------- | ---------------- |
+| CMAKE_MINIMUM_REQUIRED | 版本要求         |
+| PROJECT                | 工程名           |
+| MESSAGE                | 输出信息         |
+| ADD_EXECUTABLE         | 生成可执行文件   |
+| ADD_LIBRARY            | 生成库           |
+| ADD_SUBDIRECTORY       | 增加子目录项     |
+| ADD_DEFINITIONS        | 编译器添加-D定义 |
+| ADD_DEPENDENCIES       | 依赖             |
+| INCLUDE_DIRECTORIES    | 头文件目录       |
+| LINK_DIRECTORIES       | 库目录           |
+| TARGET_LINK_LIBRARIES  | 链接库           |
+| SET                    | 定义变量         |
+| FIND_*                 | 搜索             |
+| AUX_SOURCE_DIRECTORY   | 源文件集合       |
+
 
 - PROJECT    
 PROJECT(projectname [CXX] [C] [Java])  工程名称,并可指定工程支持的语言。默认支持所有语言 
@@ -99,7 +116,8 @@ generate_messages 生成消息
 
 - TARGET_LINK_LIBRARIES  
 TARGET_LINK_LIBRARIES(target lib1 lib2 …) 为target添加需要链接的共享库（将可执行文件连接到库上）  
-ADD_LIBRARY(libname [SHARED | STATIC | MODULE] [EXCLUDE_FROM_ALL] SRC_LIST)  
+
+- ADD_LIBRARY(libname [SHARED | STATIC | MODULE] [EXCLUDE_FROM_ALL] SRC_LIST)  
 生成动态库或静态库  
 SHARED 动态库  
 STATIC 静态库  
@@ -145,23 +163,23 @@ AUX_SOURCE_DIRECTORY(dir VAR)
 
 - FIND_  
 
-0. FIND_FILE(<VAR> name path1 path2 …)   VAR变量代表找到的文件全路径,包含文件名  
-1. FIND_LIBRARY(<VAR> name path1 path2 …)   VAR变量代表找到的库全路径,包含库文件名  
+1. FIND_FILE(<VAR> name path1 path2 …)   VAR变量代表找到的文件全路径,包含文件名  
+2. FIND_LIBRARY(<VAR> name path1 path2 …)   VAR变量代表找到的库全路径,包含库文件名  
   
     FIND_LIBRARY(libX X11 /usr/lib)  
     IF (NOT libx)    
         MESSAGE(FATAL_ERROR "libX not found")  
     ENDIF(NOT libX)  
 
-2. FIND_PATH(<VAR> name path1 path2 …)   VAR变量代表包含这个文件的路径  
+3. FIND_PATH(<VAR> name path1 path2 …)   VAR变量代表包含这个文件的路径  
   
-3. FIND_PROGRAM(<VAR> name path1 path2 …)  
+4. FIND_PROGRAM(<VAR> name path1 path2 …)  
 VAR变量代表包含这个程序的全路径  
 
 4. FIND_PACKAGE(<name> [major.minor] [QUIET] [NO_MODULE] [[REQUIRED | COMPONENTS] [componets …]])  
 用来调用预定义在CMAKE_MODULE_PATH下的Find<name>.cmake模块,你也可以自己定义Find<name>模块,通过SET(CMAKE_MODULE_PATH dir)将其放入工程的某个目录供工程使用  
-```
-## IF语法：  
+
+## IF语法  
   
 ```  
 IF (expression)    
@@ -199,7 +217,7 @@ IF (variable EQUAL number)
 IF (string EQUAL number)    
 ```
 
-## WHILE语法：
+## WHILE语法
 ```  
 WHILE(condition)    
     COMMAND1(ARGS ...)    
