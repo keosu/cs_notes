@@ -9,6 +9,7 @@
     * [shell](notes/lang/lang_shell.md)
 * Tools
     * [git](notes/tools/git.md)
+    * [CMake](notes/tools/cmake.md)
     * [VS-Code](notes/tools/vs-code.md)
     * [docker](notes/tools/docker.md)
     * [gdb](notes/tools/gdb.md)
