@@ -473,6 +473,95 @@
 <span class="hljs-comment">// get() &#x83B7;&#x53D6;</span>
 </code></pre>
 <h2 id="7-&#x5176;&#x4ED6;">7. &#x5176;&#x4ED6;</h2>
+<h2 id="code-snippet">code snippet</h2>
+<h3 id="lambda">lambda</h3>
+<pre><code class="lang-cpp"><span class="hljs-keyword">class</span> A {
+  <span class="hljs-keyword">int</span> i_ = <span class="hljs-number">0</span>;
+
+  <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">func</span><span class="hljs-params">(<span class="hljs-keyword">int</span> x, <span class="hljs-keyword">int</span> y)</span> </span>{
+    <span class="hljs-comment">// auto x1 = []{return i_; };  //error,&#x6CA1;&#x6709;&#x6355;&#x83B7;&#x5916;&#x90E8;&#x53D8;&#x91CF;</span>
+    <span class="hljs-keyword">auto</span> x2 = [=] { <span class="hljs-keyword">return</span> i_ + x + y; };
+    <span class="hljs-keyword">auto</span> x3 = [&amp;] { <span class="hljs-keyword">return</span> i_ + x + y; };
+    <span class="hljs-keyword">auto</span> x4 = [<span class="hljs-keyword">this</span>] { <span class="hljs-keyword">return</span> i_; };
+    <span class="hljs-comment">// auto x5 = [this]{return i_ + x + y; };  //error,&#x6CA1;&#x6709;&#x6355;&#x83B7;x&#x548C;y</span>
+    <span class="hljs-keyword">auto</span> x6 = [<span class="hljs-keyword">this</span>, x, y] { <span class="hljs-keyword">return</span> i_ + x + y; };
+    <span class="hljs-keyword">auto</span> x7 = [<span class="hljs-keyword">this</span>] { <span class="hljs-keyword">return</span> i_++; };
+  }
+};
+</code></pre>
+<h3 id="decltype">decltype</h3>
+<pre><code class="lang-cpp">
+<span class="hljs-keyword">class</span> Foo{};
+
+<span class="hljs-function"><span class="hljs-keyword">int</span>&amp; <span class="hljs-title">func_int_r</span><span class="hljs-params">(<span class="hljs-keyword">void</span>)</span></span>;    <span class="hljs-comment">//&#x5DE6;&#x503C;&#xFF08;lvalue&#xFF0C;&#x53EF;&#x7B80;&#x5355;&#x7406;&#x89E3;&#x4E3A;&#x53EF;&#x5BFB;&#x5740;&#x503C;&#xFF09;</span>
+<span class="hljs-function"><span class="hljs-keyword">int</span>&amp;&amp; <span class="hljs-title">func_int_rr</span><span class="hljs-params">(<span class="hljs-keyword">void</span>)</span></span>;  <span class="hljs-comment">//x&#x503C;&#xFF08;xvalue&#xFF0C;&#x53F3;&#x503C;&#x5F15;&#x7528;&#x672C;&#x8EAB;&#x662F;&#x4E00;&#x4E2A;xvalue&#xFF09;</span>
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">func_int</span><span class="hljs-params">(<span class="hljs-keyword">void</span>)</span></span>;       <span class="hljs-comment">//&#x7EAF;&#x53F3;&#x503C;&#xFF08;pvalue&#xFF09;</span>
+
+<span class="hljs-function"><span class="hljs-keyword">const</span> <span class="hljs-keyword">int</span>&amp; <span class="hljs-title">func_cint_r</span><span class="hljs-params">(<span class="hljs-keyword">void</span>)</span></span>;         <span class="hljs-comment">//&#x5DE6;&#x503C;</span>
+<span class="hljs-function"><span class="hljs-keyword">const</span> <span class="hljs-keyword">int</span>&amp;&amp; <span class="hljs-title">func_cint_rr</span><span class="hljs-params">(<span class="hljs-keyword">void</span>)</span></span>;       <span class="hljs-comment">//x&#x503C;</span>
+<span class="hljs-function"><span class="hljs-keyword">const</span> <span class="hljs-keyword">int</span> <span class="hljs-title">func_cint</span><span class="hljs-params">(<span class="hljs-keyword">void</span>)</span></span>;            <span class="hljs-comment">//&#x7EAF;&#x53F3;&#x503C;</span>
+
+<span class="hljs-function"><span class="hljs-keyword">const</span> Foo <span class="hljs-title">func_cfoo</span><span class="hljs-params">(<span class="hljs-keyword">void</span>)</span></span>;  <span class="hljs-comment">//&#x7EAF;&#x53F3;&#x503C;</span>
+
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">(<span class="hljs-keyword">void</span>)</span>
+</span>{
+    <span class="hljs-keyword">int</span> x = <span class="hljs-number">0</span>;
+
+    <span class="hljs-keyword">decltype</span>(func_int_r()) a1 = x;    <span class="hljs-comment">//a1 -&gt; int&amp;</span>
+    <span class="hljs-keyword">decltype</span>(func_int_rr()) b1 = <span class="hljs-number">0</span>;   <span class="hljs-comment">//b1 -&gt; int&amp;&amp;</span>
+    <span class="hljs-keyword">decltype</span>(func_int()) c1 = <span class="hljs-number">0</span>;      <span class="hljs-comment">//c1 -&gt; int</span>
+
+    <span class="hljs-keyword">decltype</span>(func_cint_r()) a2 = x;    <span class="hljs-comment">//a2 -&gt; const int&amp;</span>
+    <span class="hljs-keyword">decltype</span>(func_cint_rr()) b2 = <span class="hljs-number">0</span>;   <span class="hljs-comment">//b2 -&gt; const int&amp;&amp;</span>
+    <span class="hljs-keyword">decltype</span>(func_cint()) c2 = <span class="hljs-number">0</span>;      <span class="hljs-comment">//c2 -&gt; int</span>
+
+    <span class="hljs-keyword">decltype</span>(func_cfoo()) ff = Foo();  <span class="hljs-comment">//ff -&gt; Foo</span>
+
+    system(<span class="hljs-string">&quot;pause&quot;</span>);
+    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}
+</code></pre>
+<h3 id="&#x521D;&#x59CB;&#x5316;&#x5217;&#x8868;">&#x521D;&#x59CB;&#x5316;&#x5217;&#x8868;</h3>
+<pre><code class="lang-cpp"><span class="hljs-keyword">int</span> i_arr[<span class="hljs-number">3</span>] = {<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>};  <span class="hljs-comment">//&#x666E;&#x901A;&#x6570;&#x7EC4;</span>
+
+<span class="hljs-keyword">struct</span> A {
+  <span class="hljs-keyword">int</span> x;
+  <span class="hljs-keyword">struct</span> B {
+    <span class="hljs-keyword">int</span> i;
+    <span class="hljs-keyword">int</span> j;
+  } b;
+} a = {<span class="hljs-number">1</span>, {<span class="hljs-number">2</span>, <span class="hljs-number">3</span>}};  <span class="hljs-comment">// POD&#x7C7B;&#x578B;</span>
+
+<span class="hljs-keyword">class</span> FooVector {
+  <span class="hljs-built_in">std</span>::<span class="hljs-built_in">vector</span>&lt;<span class="hljs-keyword">int</span>&gt; content_;
+
+ <span class="hljs-keyword">public</span>:
+  FooVector(<span class="hljs-built_in">std</span>::<span class="hljs-built_in">initializer_list</span>&lt;<span class="hljs-keyword">int</span>&gt; <span class="hljs-built_in">list</span>) {
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">auto</span> it = <span class="hljs-built_in">list</span>.begin(); it != <span class="hljs-built_in">list</span>.end(); ++it) {
+      content_.push_back(*it);
+    }
+  }
+};
+
+<span class="hljs-keyword">class</span> FooMap {
+  <span class="hljs-built_in">std</span>::<span class="hljs-built_in">map</span>&lt;<span class="hljs-keyword">int</span>, <span class="hljs-keyword">int</span>&gt; content_;
+  <span class="hljs-keyword">using</span> <span class="hljs-keyword">pair_t</span> = <span class="hljs-built_in">std</span>::<span class="hljs-built_in">map</span>&lt;<span class="hljs-keyword">int</span>, <span class="hljs-keyword">int</span>&gt;::value_type;
+
+ <span class="hljs-keyword">public</span>:
+  FooMap(<span class="hljs-built_in">std</span>::<span class="hljs-built_in">initializer_list</span>&lt;<span class="hljs-keyword">pair_t</span>&gt; <span class="hljs-built_in">list</span>) {
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">auto</span> it = <span class="hljs-built_in">list</span>.begin(); it != <span class="hljs-built_in">list</span>.end(); ++it) {
+      content_.insert(*it);
+    }
+  }
+};
+
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">(<span class="hljs-keyword">void</span>)</span> </span>{
+  FooVector foo1 = {<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>};
+  FooMap foo2 = {{<span class="hljs-number">1</span>, <span class="hljs-number">2</span>}, {<span class="hljs-number">3</span>, <span class="hljs-number">4</span>}, {<span class="hljs-number">5</span>, <span class="hljs-number">6</span>}};
+
+  <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}
+</code></pre>
 
                                 
                                 </section>
@@ -512,7 +601,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"cpp","level":"1.3.1","depth":2,"next":{"title":"C++基础问题","level":"1.3.2","depth":2,"path":"notes/lang/lang_cpp_q&a.md","ref":"notes/lang/lang_cpp_q&a.md","articles":[]},"previous":{"title":"Languages","level":"1.3","depth":1,"ref":"","articles":[{"title":"cpp","level":"1.3.1","depth":2,"path":"notes/lang/lang_cpp.md","ref":"notes/lang/lang_cpp.md","articles":[]},{"title":"C++基础问题","level":"1.3.2","depth":2,"path":"notes/lang/lang_cpp_q&a.md","ref":"notes/lang/lang_cpp_q&a.md","articles":[]},{"title":"python","level":"1.3.3","depth":2,"path":"notes/lang/lang_python.md","ref":"notes/lang/lang_python.md","articles":[]},{"title":"javascript","level":"1.3.4","depth":2,"path":"notes/lang/lang_js.md","ref":"notes/lang/lang_js.md","articles":[]},{"title":"shell","level":"1.3.5","depth":2,"path":"notes/lang/lang_shell.md","ref":"notes/lang/lang_shell.md","articles":[]}]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"notes/lang/lang_cpp.md","mtime":"2020-08-04T04:05:21.656Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-08-04T04:05:44.838Z"},"basePath":"../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"cpp","level":"1.3.1","depth":2,"next":{"title":"C++基础问题","level":"1.3.2","depth":2,"path":"notes/lang/lang_cpp_q&a.md","ref":"notes/lang/lang_cpp_q&a.md","articles":[]},"previous":{"title":"Languages","level":"1.3","depth":1,"ref":"","articles":[{"title":"cpp","level":"1.3.1","depth":2,"path":"notes/lang/lang_cpp.md","ref":"notes/lang/lang_cpp.md","articles":[]},{"title":"C++基础问题","level":"1.3.2","depth":2,"path":"notes/lang/lang_cpp_q&a.md","ref":"notes/lang/lang_cpp_q&a.md","articles":[]},{"title":"python","level":"1.3.3","depth":2,"path":"notes/lang/lang_python.md","ref":"notes/lang/lang_python.md","articles":[]},{"title":"javascript","level":"1.3.4","depth":2,"path":"notes/lang/lang_js.md","ref":"notes/lang/lang_js.md","articles":[]},{"title":"shell","level":"1.3.5","depth":2,"path":"notes/lang/lang_shell.md","ref":"notes/lang/lang_shell.md","articles":[]}]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"notes/lang/lang_cpp.md","mtime":"2020-09-12T00:11:46.118Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-09-12T00:12:19.259Z"},"basePath":"../..","book":{"language":""}});
         });
     </script>
 </div>
