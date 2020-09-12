@@ -117,3 +117,99 @@ std::unique_ptr<int[]> up(new int[10]()); // this will correctly call delete[]  
 ```
 
 ## 7. 其他
+
+## code snippet
+
+### lambda
+```cpp
+class A {
+  int i_ = 0;
+
+  void func(int x, int y) {
+    // auto x1 = []{return i_; };  //error,没有捕获外部变量
+    auto x2 = [=] { return i_ + x + y; };
+    auto x3 = [&] { return i_ + x + y; };
+    auto x4 = [this] { return i_; };
+    // auto x5 = [this]{return i_ + x + y; };  //error,没有捕获x和y
+    auto x6 = [this, x, y] { return i_ + x + y; };
+    auto x7 = [this] { return i_++; };
+  }
+};
+```
+
+### decltype
+
+```cpp
+
+class Foo{};
+
+int& func_int_r(void);    //左值（lvalue，可简单理解为可寻址值）
+int&& func_int_rr(void);  //x值（xvalue，右值引用本身是一个xvalue）
+int func_int(void);       //纯右值（pvalue）
+
+const int& func_cint_r(void);         //左值
+const int&& func_cint_rr(void);       //x值
+const int func_cint(void);            //纯右值
+
+const Foo func_cfoo(void);  //纯右值
+
+int main(void)
+{
+	int x = 0;
+
+	decltype(func_int_r()) a1 = x;    //a1 -> int&
+	decltype(func_int_rr()) b1 = 0;   //b1 -> int&&
+	decltype(func_int()) c1 = 0;      //c1 -> int
+
+	decltype(func_cint_r()) a2 = x;    //a2 -> const int&
+	decltype(func_cint_rr()) b2 = 0;   //b2 -> const int&&
+	decltype(func_cint()) c2 = 0;      //c2 -> int
+
+	decltype(func_cfoo()) ff = Foo();  //ff -> Foo
+
+	system("pause");
+	return 0;
+}
+```
+###  初始化列表
+```cpp
+int i_arr[3] = {1, 2, 3};  //普通数组
+
+struct A {
+  int x;
+  struct B {
+    int i;
+    int j;
+  } b;
+} a = {1, {2, 3}};  // POD类型
+
+class FooVector {
+  std::vector<int> content_;
+
+ public:
+  FooVector(std::initializer_list<int> list) {
+    for (auto it = list.begin(); it != list.end(); ++it) {
+      content_.push_back(*it);
+    }
+  }
+};
+
+class FooMap {
+  std::map<int, int> content_;
+  using pair_t = std::map<int, int>::value_type;
+
+ public:
+  FooMap(std::initializer_list<pair_t> list) {
+    for (auto it = list.begin(); it != list.end(); ++it) {
+      content_.insert(*it);
+    }
+  }
+};
+
+int main(void) {
+  FooVector foo1 = {1, 2, 3, 4, 5};
+  FooMap foo2 = {{1, 2}, {3, 4}, {5, 6}};
+
+  return 0;
+}
+```
