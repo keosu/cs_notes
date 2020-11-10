@@ -3,6 +3,7 @@
 * Languages
     * [cpp](notes/lang/lang_cpp.md)
     * [C++基础问题](notes/lang/lang_cpp_q&a.md)
+    * [C++核心指南](notes/lang/lang_cpp_guidelines.md)
     * [python](notes/lang/lang_python.md)
     * [javascript](notes/lang/lang_js.md) 
     * [typescript](notes/lang/lang_ts.md) 
