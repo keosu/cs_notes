@@ -1,5 +1,25 @@
 # 
 
+# 栈
+
+## 字符串返回去掉重复字母后的最小字典序子串
+用栈来存储最终返回的字符串，并维持字符串的最小字典序。每遇到一个字符，如果这个字符不存在于栈中，就需要将该字符压入栈中。但在压入之前，需要先将之后还会出现，并且字典序比当前字符小的栈顶字符移除，然后再将当前字符压入。
+
+```python
+class Solution:
+    def removeDuplicateLetters(self, s: str) -> str: 
+        stack = [] 
+        seen = set() 
+        last_occurrence = {c: i for i, c in enumerate(s)} 
+        for i, c in enumerate(s): 
+            if c not in seen: 
+                while stack and c < stack[-1] and i < last_occurrence[stack[-1]]:
+                    seen.discard(stack.pop())
+                seen.add(c)
+                stack.append(c)
+        return ''.join(stack)
+```
+
 # 回溯
 
 ## 全排列
@@ -151,6 +171,56 @@ dp[i][j] = min{dp[i][k] + dp[k+1][j] + p[i-1]*p[k]*p[j]}; (i<j && i<=k<j)
 dp[1][n]即为最终求解.
 ```
 
+<<<<<<< HEAD
+## 8. 树中距离之和
+给定一个无向、连通的树。树中有 N 个标记为 0...N-1 的节点以及 N-1 条边 。 第 i 条边连接节点 edges[i][0] 和 edges[i][1] 。
+ 返回一个表示节点 i 与其他所有节点距离之和的列表 ans。
+
+**解题思路**  
+朴素的想法是，计算每一个节点到其他节点的距离，然后求和。 显然，这样做存在大量的重复计算，也就是说，有较大的优化空间。
+
+ 
+稍加观察，不难发现，我们只需要计算出根节点的结果，其他节点无非就是根节点的转移，只需考虑靠近和远离的节点个数即可。
+
+对于父子节点来说，子节点比父节点更靠近它的子孙节点，同时远离父节点的其他节点。我们不难得出这样的状态转移方程：
+    dp[i] = dp[i.parent] - x + y
+
+其中，x为靠近的节点个数，y为远离的节点个数。二者之和固定，只需要得到其中的一个，就可以计算出另一个。
+
+要想得到x或者y，我们还需要知道每个节点有多少个子孙节点，这可以在第一次遍历，计算根节点到其他节点的距离和是顺便求出。
+我们将其记录下来，以备它用。最后，再从根节点开始，遍历一遍，把其他节点的结果也计算出来，就大功告成了。
+ 
+ 
+```python
+class Solution:
+    def sumOfDistancesInTree(self, N: int, edges: List[List[int]]) -> List[int]:
+        graph = [[] for _ in range(N)]
+        for edge in edges:
+            graph[edge[0]].append(edge[1])
+            graph[edge[1]].append(edge[0])
+        dist_sum = [0 for _ in range(N)]
+        node_num = [1 for _ in range(N)]
+
+        def post_order(node, parent):
+            for n in graph[node]:
+                if n == parent:
+                    continue
+                post_order(n, node)
+                node_num[node] += node_num[n]
+                dist_sum[node] += dist_sum[n] + node_num[n]
+
+        def pre_order(node, parent):
+            for n in graph[node]:
+                if n == parent:
+                    continue
+                dist_sum[n] = dist_sum[node] - node_num[n] + (N - node_num[n])
+                pre_order(n, node)
+        
+        post_order(0, -1)
+        pre_order(0, -1)
+        return dist_sum
+```
+=======
 ## 8、任意两点的最短路径
 Floyd算法
 Floyd-Warshall算法的原理是动态规划 
@@ -162,3 +232,4 @@ Floyd-Warshall算法的原理是动态规划
 因此， D_{i,j,k} = min(D_{i,j,k-1}, D_{i,k,k-1}  +D_{k,j,k-1})  
 
 在实际算法中，为了节约空间，可以直接在原来空间上进行迭代，这样空间可降至二维。
+>>>>>>> 06d14709bf2798098920a8da795015e0f232229e
