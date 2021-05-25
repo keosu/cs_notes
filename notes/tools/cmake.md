@@ -225,3 +225,14 @@ WHILE(condition)
     ...  
 ENDWHILE(condition)
 ```
+
+## foreach 语法 
+```    
+file(GLOB_RECURSE CPP_SRC_LIST test/*.cpp)
+foreach(v ${CPP_SRC_LIST}) 
+    STRING(REGEX REPLACE  ".+/(.+)\\.cpp"  "\\1" FILE_NAME ${v}) 
+    message(STATUS "BUILDING ${v}") 
+    add_executable(${FILE_NAME} ${v})
+    target_link_libraries(${FILE_NAME} colib_static pthread dl) 
+endforeach() 
+```
