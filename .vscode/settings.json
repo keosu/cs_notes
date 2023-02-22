@@ -8,5 +8,15 @@
   "C_Cpp.default.configurationProvider": "go2sh.cmake-integration",
   "code-runner.executorMap": {
     "cpp": "cd $dir && g++ $fileName  -o $fileNameWithoutExt -lglog -lpthread && ./$fileNameWithoutExt"
+  },
+  "files.exclude": {
+    "**/.git": true,
+    "**/.svn": true,
+    "**/.hg": true,
+    "**/CVS": true,
+    "**/.DS_Store": true,
+    "**/Thumbs.db": true,
+    "**/.pkl_memoize_py3":true,
+    "**/__pycache__":true,
   }
 }
