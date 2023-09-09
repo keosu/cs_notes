@@ -1,13 +1,13 @@
 // C++ 类的构造过程
 // 编译器使用g++ 7.3 ，注意选项 -fno-elide-constructors
 // 该选项说明：
-// The C++ standard allows an implementation to omit creating a temporary that is only used to 
-// initialize another object of the same type. Specifying this option disables that optimization, 
-// and forces G++ to call the copy constructor in all cases.
-
+// The C++ standard allows an implementation to omit creating a temporary that
+// is only used to initialize another object of the same type. Specifying this
+// option disables that optimization, and forces G++ to call the copy
+// constructor in all cases.
 
 // 无该选项时，一些过程被优化了，此时输出：
-// -------------------------1-------------------------
+//  vbhhhhbgbhb1-------------------------
 // Constructor
 // -------------------------2-------------------------
 // Copy Constructor

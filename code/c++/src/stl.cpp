@@ -7,11 +7,11 @@
 #include <iostream>    //cout
 #include <iterator>    //ostream_iterator
 #include <numeric>     //iota
+#include <random>
 #include <ratio>
 #include <string>  //string
 #include <valarray>
 #include <vector>  //vector
-#include <random>
 
 using namespace std;
 using namespace chrono;
@@ -32,8 +32,8 @@ void print(const valarray<T> values, size_t perline = 8, size_t width = 8) {
 template <typename TimePoint>
 void print_timepoint(const TimePoint& tp, size_t places = 0) {
   auto elapsed = tp.time_since_epoch();  // chrono::duration object
-  auto seconds =
-      chrono::duration_cast<chrono::duration<double>>(elapsed).count();  // second是double类型
+  auto seconds = chrono::duration_cast<chrono::duration<double>>(elapsed)
+                     .count();  // second是double类型
   cout << fixed << setprecision(places) << seconds << " seconds\n";
 }
 
@@ -51,7 +51,8 @@ void test_complex() {  // 10.5 复数
     complex<double> z{1.5, -2.5};
     z.imag(99);
     z.real(-4.5);
-    cout << "Real part: " << z.real() << " Imaginary part: " << z.imag() << endl;
+    cout << "Real part: " << z.real() << " Imaginary part: " << z.imag()
+         << endl;
   }
 
   {
@@ -76,7 +77,7 @@ void test_complex() {  // 10.5 复数
     z /= z1;
   }
   {  // 10.5.3 比较
-    //#include <cmath>//#include <complex>已经包含了cmath头文件
+    // #include <cmath>//#include <complex>已经包含了cmath头文件
     complex<double> z1{3, 4};
     complex<double> z2{4, -3};
     cout << boolalpha << (z1 == z2) << " ";
@@ -93,8 +94,9 @@ void test_complex() {  // 10.5 复数
     const int width{100}, height{100};  // Image width and height
     size_t count{100};                  // Iterate count for recursion
     char image[width][height];
-    auto start_time = chrono::steady_clock::now();  // time_point object for start
-    complex<double> c{-0.7, 0.27015};               // Constant in z = z*z + c
+    auto start_time =
+        chrono::steady_clock::now();   // time_point object for start
+    complex<double> c{-0.7, 0.27015};  // Constant in z = z*z + c
 
     for (int i{}; i < width; ++i)  // Iterate over pixels in the width
     {
@@ -115,7 +117,8 @@ void test_complex() {  // 10.5 复数
     }
     auto end_time = chrono::steady_clock::now();  // time_point object for end
     auto elapsed = end_time - start_time.time_since_epoch();
-    cout << "Time to generate a Julia set with " << width << "x" << height << " pixels is ";
+    cout << "Time to generate a Julia set with " << width << "x" << height
+         << " pixels is ";
     print_timepoint(elapsed, 9);
 
     cout << "The Julia set looks like this:\n";
@@ -138,28 +141,30 @@ void test_chrono() {  // 10.4 时间模板
     chrono::microseconds very_tiny{100};
     ++tiny;
     very_tiny--;
-    cout << "tiny= " << tiny.count() << " verY_tiny = " << very_tiny.count() << endl;
+    cout << "tiny= " << tiny.count() << " verY_tiny = " << very_tiny.count()
+         << endl;
   }
 
-  {  //混合计算，则以更为精细的单位为计算结果的单位。
+  {  // 混合计算，则以更为精细的单位为计算结果的单位。
     chrono::milliseconds ten_minites{600000};
     chrono::minutes half_hour(30);
     auto total = ten_minites + half_hour;  // total 的单位为ms
     cout << "total = " << total.count() << endl;
   }
-  {                                              //单位的转换
+  {                                              // 单位的转换
     chrono::duration<int, ratio<1, 5>> d1{50};   // 10s
     chrono::duration<int, ratio<1, 10>> d2{50};  // 5s
     chrono::duration<int, ratio<1, 3>> d3{45};   // 15s
     chrono::duration<int, ratio<1, 6>> d4{60};   // 10s
     d2 += d1;
-    // d1+=d2; //d1<1,5> 和 d2<1, 10>不match, d2<1,10>到d1<1,5>的单位转换不可行。
+    // d1+=d2; //d1<1,5> 和 d2<1, 10>不match,
+    // d2<1,10>到d1<1,5>的单位转换不可行。
     d1 += chrono::duration_cast<chrono::duration<int, ratio<1, 5>>>(d2);
     // d1+=d3; // d1<1,5>和d3<1,3>不match，d3<1,3>到d1<1,5>的单位转换不可行。
     d1 += chrono::duration_cast<chrono::duration<int, ratio<1, 5>>>(d3);
     d4 += d3;
-    cout << "d1=" << d1.count() << "; d2=" << d2.count() << "; d3=" << d3.count()
-         << "; d4=" << d4.count() << endl;
+    cout << "d1=" << d1.count() << "; d2=" << d2.count()
+         << "; d3=" << d3.count() << "; d4=" << d4.count() << endl;
   }
   {
     chrono::duration<int, ratio<1, 5>> d1{50};
@@ -171,7 +176,8 @@ void test_chrono() {  // 10.4 时间模板
     chrono::duration<int, ratio<1, 10>> d2{50};
     chrono::duration<int, ratio<1, 3>> d3{45};
     if ((d1 - d2) == (d3 - d1)) {
-      cout << "both duration are " << chrono::duration_cast<chrono::seconds>(d1 - d2).count()
+      cout << "both duration are "
+           << chrono::duration_cast<chrono::seconds>(d1 - d2).count()
            << " seconds" << endl;
     }
   }
@@ -196,11 +202,13 @@ void test_chrono() {  // 10.4 时间模板
   {  // 10.4.2 时钟和时间点timepoint
     cout << boolalpha << chrono::system_clock::is_steady << endl;
 
-    chrono::system_clock::time_point tp_sys1;          // default object - the epoch
-    chrono::time_point<chrono::system_clock> tp_sys2;  // default object - the epoch
+    chrono::system_clock::time_point tp_sys1;  // default object - the epoch
+    chrono::time_point<chrono::system_clock>
+        tp_sys2;  // default object - the epoch
 
     using Clock = chrono::steady_clock;
-    using TimePoint = chrono::time_point<Clock>;  // or using TimePoint = Clock::time_point;
+    using TimePoint =
+        chrono::time_point<Clock>;  // or using TimePoint = Clock::time_point;
     using namespace literals::chrono_literals;
 
     TimePoint tp1{chrono::duration<int>(20)};  // epoch + 20 seconds
@@ -215,7 +223,7 @@ void test_chrono() {  // 10.4 时间模板
     TimePoint tp4{5500us};  // epoch + 00055 seconds
     print_timepoint(tp4);
 
-    //强制以chrono::minutes作为单位并不好，也没有必要，比如：
+    // 强制以chrono::minutes作为单位并不好，也没有必要，比如：
     chrono::time_point<chrono::system_clock, chrono::minutes> tp{2h};
 
     {  // 2. tp对象的持续时间
@@ -223,9 +231,11 @@ void test_chrono() {  // 10.4 时间模板
       using TimePoint = Clock::time_point;
       TimePoint tp1{chrono::duration<int>(20)};  // epoch + 20seconds
       print_timepoint(tp1);
-      auto elapsed = tp1.time_since_epoch();  // chrono::duration for the time interval,
-                                              // 但类型具体类型未知，我们强制转换为ns单位的duration
-      auto ticks_ns = chrono::duration_cast<chrono::nanoseconds>(elapsed).count();
+      auto elapsed =
+          tp1.time_since_epoch();  // chrono::duration for the time interval,
+                                   // 但类型具体类型未知，我们强制转换为ns单位的duration
+      auto ticks_ns =
+          chrono::duration_cast<chrono::nanoseconds>(elapsed).count();
     }
     {                          // 3. tp的算术运算 Ex10_04.cpp
       using namespace chrono;  // using chrono不能达到目的
@@ -255,14 +265,15 @@ void test_chrono() {  // 10.4 时间模板
 
       // cast丢精度
       using TimePoint = time_point<system_clock, seconds>;
-      TimePoint tp_sec{75s};                           // tp_sec{75}不能通过编译.
+      TimePoint tp_sec{75s};  // tp_sec{75}不能通过编译.
       auto tp_min = time_point_cast<minutes>(tp_sec);  // 75s变为60s, 丢了15s
       print_timepoint(tp_min);
     }
 
     {  // 4. 比较timepoint
       using TimePoint1 = chrono::time_point<chrono::system_clock>;
-      using TimePoint2 = chrono::time_point<chrono::system_clock, chrono::minutes>;
+      using TimePoint2 =
+          chrono::time_point<chrono::system_clock, chrono::minutes>;
 
       TimePoint1 tp1{120s};
       TimePoint2 tp2{2min};
@@ -270,18 +281,21 @@ void test_chrono() {  // 10.4 时间模板
       cout << "tp1 ticks: " << tp1.time_since_epoch().count()
            << "; tp2 ticks: " << tp2.time_since_epoch().count() << endl;
 
-      cout << "tp1 is " << ((tp1 == tp2) ? "equal" : "not equal") << " to tp2" << endl;
+      cout << "tp1 is " << ((tp1 == tp2) ? "equal" : "not equal") << " to tp2"
+           << endl;
     }
     {  // 5. clock的操作，动起来.
       using Clock = chrono::system_clock;
       auto instant = Clock::now();  // return a time_point<Clock>
       time_t the_time = Clock::to_time_t(instant);
-      cout << put_time(localtime(&the_time),
-                       "The time now is: %R.%nToday is %A %e %B %Y. The time zone is %Z.%n");
+      cout << put_time(
+          localtime(&the_time),
+          "The time now is: %R.%nToday is %A %e %B %Y. The time zone is %Z.%n");
 
       time_t t = Clock::to_time_t(Clock::now());
       auto p_tm = localtime(&t);
-      cout << "Time: " << p_tm->tm_hour << ':' << setfill('0') << setw(2) << p_tm->tm_min << endl;
+      cout << "Time: " << p_tm->tm_hour << ':' << setfill('0') << setw(2)
+           << p_tm->tm_min << endl;
     }
     {  // 6. 定时执行.
       auto start_time = chrono::steady_clock::now();
@@ -306,7 +320,7 @@ void test_valarray() {  // 10.3 valarray
     valarray<double> data(3.14, 10);  // 10个3.14
 
     int vals[]{2, 4, 6, 8, 10, 12, 14};
-    valarray<int> vals1{vals, 5};     //前5个元素, vals是数组vals[]的首地址.
+    valarray<int> vals1{vals, 5};  // 前5个元素, vals是数组vals[]的首地址.
     valarray<int> val2{vals + 1, 4};  // 4, 6, 8, 10
 
     // 10.3.1 valarray基本操作
@@ -314,7 +328,8 @@ void test_valarray() {  // 10.3 valarray
     valarray<size_t> sizes_4{2, 3, 4, 5};
     sizes_3.swap(sizes_4);
     swap(sizes_3, sizes_4);
-    cout << "The average of the elements in sizes_4" << sizes_4.sum() / sizes_4.size() << endl;
+    cout << "The average of the elements in sizes_4"
+         << sizes_4.sum() / sizes_4.size() << endl;
 
     // shift
     valarray<int> d1{
@@ -330,17 +345,18 @@ void test_valarray() {  // 10.3 valarray
     auto d5 = d1.cshift(-3);
 
     // valarray.apply()
-    valarray<double> time{0.0, 1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0};  // unit: seconds
+    valarray<double> time{0.0, 1.0, 2.0, 3.0, 4.0,
+                          5.0, 6.0, 7.0, 8.0, 9.0};  // unit: seconds
     auto distance = time.apply([](double t) {
       const static double g{32.0};
       return 0.5 * g * t * t;
     });
     // compile error
     // const double g{32.0};
-    // auto distance = time.apply([g](double t){ const static double g{32.0}; return 0.5*g*t*t;});
-    // Ex10_2.cpp
+    // auto distance = time.apply([g](double t){ const static double g{32.0};
+    // return 0.5*g*t*t;}); Ex10_2.cpp
     const static double g{32.0};  // unit: ft/sec/sec
-    double height{2722};          // unit: feet, building height for brick drop from
+    double height{2722};  // unit: feet, building height for brick drop from
     double end_time{sqrt(2 * height / g)};
     size_t max_time{1 + static_cast<size_t>(end_time + 0.5)};
 
@@ -350,13 +366,17 @@ void test_valarray() {  // 10.3 valarray
 
     // Calculate distance each second
     auto temp = times.apply([](double t) { return 0.5 * g * t * t; });
-    valarray<double> distances = times.apply([](double t) { return 0.5 * g * t * t; });
+    valarray<double> distances =
+        times.apply([](double t) { return 0.5 * g * t * t; });
 
     // Calculate speed each second
-    valarray<double> v_fps = sqrt(distances.apply([](double d) { return 2 * g * d; }));
+    valarray<double> v_fps =
+        sqrt(distances.apply([](double d) { return 2 * g * d; }));
 
     // Lambda expression to output results
-    auto print = [](double v) { cout << setw(6) << static_cast<int>(round(v)); };
+    auto print = [](double v) {
+      cout << setw(6) << static_cast<int>(round(v));
+    };
 
     // Output the times - the last is a special case...
     cout << "Time(seconds): ";
@@ -380,9 +400,9 @@ void test_valarray() {  // 10.3 valarray
     {
       valarray<int> even{2, 4, 6, 8};
       valarray<int> odd{3, 5, 7, 9};
-      valarray<int> r1 = even + 2;  //不能使用auto
+      valarray<int> r1 = even + 2;  // 不能使用auto
       print(r1, 4, 3);
-      valarray<int> r2 = 2 * r1 + odd;  //不能使用auto
+      valarray<int> r2 = 2 * r1 + odd;  // 不能使用auto
       print(r2, 4, 3);
       r1 += 2 * odd - 4 * (r2 - even);
       print(r1, 4, 3);
@@ -432,7 +452,7 @@ void test_valarray() {  // 10.3 valarray
       // references data[2], data[7], data[12]
       auto d_slice = data[slice{start, size, stride}];
 
-      d_slice += valarray<int>{10, 20, 30};  //使用复合赋值运算符操作data第二列
+      d_slice += valarray<int>{10, 20, 30};  // 使用复合赋值运算符操作data第二列
       print(data, 5, 3);
 
       valarray<int> factors{22, 17, 10};
@@ -452,8 +472,9 @@ void test_valarray() {  // 10.3 valarray
       iota(begin(data), end(data), 1);
       print(data, 5, 3);
 
-      auto col{data[slice{4, 3, 5}]};            // col will be type slice_array
-      valarray<int> col5{data[slice{4, 3, 5}]};  // convert slice_array to valarray
+      auto col{data[slice{4, 3, 5}]};  // col will be type slice_array
+      valarray<int> col5{
+          data[slice{4, 3, 5}]};  // convert slice_array to valarray
       data[slice{1, 3, 5}] += col5;
       data[slice{3, 3, 5}] += col5;
       print(data, 5, 3);
@@ -486,7 +507,8 @@ void test_basic() {
 
   cout << "input intergers ,press ctrl+z to end with" << endl;
   vector<int> ivec;
-  copy(istream_iterator<int>(cin), istream_iterator<int>(), back_inserter(ivec));
+  copy(istream_iterator<int>(cin), istream_iterator<int>(),
+       back_inserter(ivec));
   copy(ivec.begin(), ivec.end(), ostream_iterator<int>(cout, " , "));
 }
 
@@ -498,7 +520,8 @@ int main(void) {
     vector<double> data(9);
     double initial{-2.5};
     iota(begin(data), end(data), initial);
-    copy(begin(data), end(data), ostream_iterator<double>{cout << fixed << setprecision(1), " "});
+    copy(begin(data), end(data),
+         ostream_iterator<double>{cout << fixed << setprecision(1), " "});
     cout << endl;
 
     string text{"This is text"};
@@ -507,8 +530,8 @@ int main(void) {
 
     vector<string> words(8);
     iota(begin(words), end(words), "mysterious");
-    // iota(begin(words), end(words), string{"mysterious"});//compile error, T should support
-    // operator++
+    // iota(begin(words), end(words), string{"mysterious"});//compile error, T
+    // should support operator++
     copy(begin(words), end(words), ostream_iterator<string>{cout, " "});
     cout << endl;
   }
@@ -529,14 +552,16 @@ int main(void) {
 
     vector<string> numbers{"one", "two",   "three", "four", "five",
                            "six", "seven", "eight", "nine", "ten"};
-    auto s = accumulate(begin(numbers), end(numbers), string{}, [](string& str, string& element) {
-      if (element[0] == 't') return str + ' ' + element;
-      return str;
-    });  // result: " two three ten"
+    auto s = accumulate(begin(numbers), end(numbers), string{},
+                        [](string& str, string& element) {
+                          if (element[0] == 't') return str + ' ' + element;
+                          return str;
+                        });  // result: " two three ten"
 
     vector<int> num = {1, 2, 3, 10, 11, 12};
-    auto sx = accumulate(begin(num), end(num), string{"The numbers are"},
-                         [](string str, int n) { return str + ": " + to_string(n); });
+    auto sx =
+        accumulate(begin(num), end(num), string{"The numbers are"},
+                   [](string str, int n) { return str + ": " + to_string(n); });
     cout << sx << endl;  // output: The numbers are: 1: 2: 3: 10: 11: 12
   }
 
@@ -559,22 +584,27 @@ int main(void) {
     // 新的内积使用方法
     iota(begin(v1), end(v1), 0);
     iota(begin(v2), end(v2), 0);
-    cout << inner_product(begin(v1), end(v1), begin(v2), 1) << endl;  // output: 111
+    cout << inner_product(begin(v1), end(v1), begin(v2), 1)
+         << endl;  // output: 111
     cout << inner_product(begin(v1), end(v1), begin(v2), 1, plus<>() /*后做*/,
                           multiplies<>() /*先做*/)
          << endl;
-    cout << inner_product(begin(v1), end(v1), begin(v2), 1, multiplies<>(), plus<>()) << endl;
+    cout << inner_product(begin(v1), end(v1), begin(v2), 1, multiplies<>(),
+                          plus<>())
+         << endl;
   }
 
   {  // 10.2.4 相邻差
     vector<int> data{2, 3, 5, 7, 11, 13, 17, 19};
     cout << "Difference: ";
-    adjacent_difference(begin(data), end(data), ostream_iterator<int>{cout, " "});
+    adjacent_difference(begin(data), end(data),
+                        ostream_iterator<int>{cout, " "});
     cout << endl;
 
     vector<int> data2{2, 3, 5, 7, 11, 13, 17, 19};
     cout << "Products: ";
-    adjacent_difference(begin(data2), end(data2), ostream_iterator<int>{cout, " "}, multiplies<>());
+    adjacent_difference(begin(data2), end(data2),
+                        ostream_iterator<int>{cout, " "}, multiplies<>());
     cout << endl;
 
     // fibonacci by adjacent_difference()
@@ -584,7 +614,8 @@ int main(void) {
     cout << endl;
 
     // fibonacci by adjacent_difference(): wrong implementation
-    adjacent_difference(begin(fib), end(fib), ostream_iterator<size_t>{cout, " "}, plus<>());
+    adjacent_difference(begin(fib), end(fib),
+                        ostream_iterator<size_t>{cout, " "}, plus<>());
     cout << endl;
   }
 
@@ -619,11 +650,13 @@ int main(void) {
     auto pr = minmax_element(begin(data), end(data));
     cout << "\n Min = " << *pr.first << "Max = " << *pr.second << endl;
 
-    auto words = {string{"one"}, string{"two"},   string{"three"}, string{"four"}, string{"five"},
-                  string{"six"}, string{"seven"}, string{"eight"}};  // initializer_list
+    auto words = {string{"one"},   string{"two"},  string{"three"},
+                  string{"four"},  string{"five"}, string{"six"},
+                  string{"seven"}, string{"eight"}};  // initializer_list
 
-    auto prx =
-        minmax(words, [](const string& s1, const string& s2) { return s1.back() < s2.back(); });
+    auto prx = minmax(words, [](const string& s1, const string& s2) {
+      return s1.back() < s2.back();
+    });
     cout << "\n Min = " << prx.first << "Max = " << prx.second << endl;
   }
 

@@ -261,3 +261,6 @@ aiesimulator_output/
 ISS_RPC_SERVER_PORT
 .Xil
 ./**/*.xclbin
+
+
+.xmake
