@@ -264,3 +264,4 @@ ISS_RPC_SERVER_PORT
 
 
 .xmake
+tmp*
