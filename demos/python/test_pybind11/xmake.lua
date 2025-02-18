@@ -2,7 +2,6 @@
 
 add_rules("mode.debug", "mode.release")
 add_requires("pybind11")
-set_languages("cxx11")
 set_optimize("fastest")
 
 -- target("CallBack")
